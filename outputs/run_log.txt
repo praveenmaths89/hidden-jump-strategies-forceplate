@@ -1,0 +1,22 @@
+[1] Loaded 833 trials, 215 athletes, 333 sessions
+
+==== Analysis: main_lowest_com (Touch-down to lowest centre of mass) ====
+                                          step trials athletes sessions
+1                 All male football CMJ trials    833      215      333
+2                          R1: valid body mass    828      212      329
+3 R2: quiet-stance mass within 5% of body mass    813      212      328
+4          R3: no force on plate during flight    811      212      327
+5                 R4: complete metrics and age    811      212      327
+6        R5: end of landing (lowest COM) found    805      212      327
+
+==== Analysis: sensitivity_1s (Touch-down to 1 s after touch-down) ====
+                                          step trials athletes sessions
+1                 All male football CMJ trials    833      215      333
+2                          R1: valid body mass    828      212      329
+3 R2: quiet-stance mass within 5% of body mass    813      212      328
+4          R3: no force on plate during flight    811      212      327
+5                 R4: complete metrics and age    811      212      327
+
+[12] Reproduction check: 42 of 42 report values reproduced exactly at printed precision
+
+Done in 8.3 s. R 4.5.3

@@ -1,0 +1,18 @@
+% Pipeline flow diagram (Figure 1); used in the manuscript and compiled standalone for the submission file
+\begin{tikzpicture}[
+  node distance=2.6mm and 4mm,
+  box/.style={draw, rounded corners=1.5pt, align=flush left, font=\sffamily\scriptsize, text width=52mm, inner sep=3pt, fill=#1},
+  box/.default=white,
+  arr/.style={-{Stealth[length=1.6mm]}, thick, gray!70!black}]
+\node[box=blue!6] (b1) {\textbf{1. Data}\\ Routine VALD ForceDecks CMJ tests, male footballers; dual-plate vertical force (1000\,Hz; 60 trials at 500\,Hz) and vendor trial metrics; pseudonymous codes};
+\node[box=blue!6, below=of b1] (b2) {\textbf{2. Events and phases}\\ vendor onset, take-off and touch-down; take-off phase = onset $\rightarrow$ take-off; landing phase = touch-down $\rightarrow$ lowest centre of mass (velocity $=0$), or touch-down $+1$\,s (sensitivity)};
+\node[box=blue!6, below=of b2] (b3) {\textbf{3. Quality control}\\ R1 valid body mass; R2 quiet-stance mass within 5\%; R3 flight force $\le 50$\,N; R4 complete metrics and age; R5 lowest centre of mass found};
+\node[box=green!7, below=of b3] (b4) {\textbf{4. Curve construction}\\ force $\div$ body weight; each phase resampled to 101 points; phases concatenated without flight $\rightarrow$ 202-point curve};
+\node[box=orange!9, right=of b1] (b5) {\textbf{5. Aim 1: modes of variation}\\ covariance PCA (centred, unscaled); four components retained a priori; mean $\pm 2$\,SD reconstructions; loading share by phase; correlations with descriptors};
+\node[box=orange!9, below=of b5] (b6) {\textbf{6. Aim 2: matched-band dispersion}\\ trials in the 45th--55th percentile of jump height or relative peak force; SD ratio band / full sample; athlete bootstrap 95\% CI};
+\node[box=orange!9, below=of b6] (b7) {\textbf{7. Aim 3: variance explained}\\ OLS of each score on four vendor metrics, age and body mass; $R^2$ in-sample, athlete-grouped 5-fold CV, one trial per athlete, athlete means};
+\node[box=red!6, below=of b7] (b8) {\textbf{8. Structure and sensitivity}\\ athlete / session / trial variance decomposition; 1-s landing window; matched-band width};
+\draw[arr] (b1) -- (b2); \draw[arr] (b2) -- (b3); \draw[arr] (b3) -- (b4);
+\draw[arr] (b4.east) -- ++(2mm,0) |- (b5.west);
+\draw[arr] (b5) -- (b6); \draw[arr] (b6) -- (b7); \draw[arr] (b7) -- (b8);
+\end{tikzpicture}
