@@ -4,7 +4,7 @@
 reveals movement strategies that conventional force-plate metrics do not capture* (Chougale & Ananthakumar)
 **Venue:** *Sports Biomechanics* (Taylor & Francis), manuscript prepared, not submitted
 **Repository:** https://github.com/praveenmaths89/hidden-jump-strategies-forceplate — **private** (keep private)
-**Snapshot commit:** `__COMMIT__` (code, data, outputs and manuscript as of 12 Nov 2026; later commits only touch this note)
+**Snapshot commit:** `9e561f3` (code, data, outputs and manuscript as of 12 Nov 2026; later commits only touch this note)
 
 This is the force–time curve (PCA of CMJ take-off and landing curves) paper finished on 11 Nov 2026. It is not
 any of the older FDA/JSHS folders on the box; do not merge those into this repository.
