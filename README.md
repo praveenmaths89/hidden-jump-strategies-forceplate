@@ -22,6 +22,7 @@ The landing-window definition is tested in a sensitivity analysis that ends the 
 ## Repository layout
 | Path | Contents |
 |---|---|
+| `R/00_extract_from_raw_private.R` | Record of the private extraction step (raw VALD export -> de-identified trial file); not runnable without the private data |
 | `R/run_all.R` | **The single end-to-end pipeline** (sections 0-16: setup, load, QC, normalisation, PCA, interpretation, matched bands, regression, robustness, variance decomposition, descriptives, figures, reproduction check, manuscript figures, LaTeX tables, in-text numbers, software record) |
 | `data/cmj_trials_deidentified.csv` | 833 male football CMJ trials, before QC. Pseudonymous `athlete`, `test_code` (session) and `trial_code`; age (0.1 y), body mass, sampling rate, vendor metrics, QC helpers and 101-point force curves in N (`to_*` take-off, `ld_*` landing to touch-down + 1 s, `ldc_*` landing to lowest COM) |
 | `outputs/main_lowest_com/` | Main analysis: tables (CSV, including de-identified PC scores) and figures (PNG) |
@@ -46,7 +47,7 @@ python3 tools/verify_references.py   # optional: re-check every DOI against Cros
 
 The only random steps are the CV folds, the one-trial-per-athlete draw and the 2,000-sample athlete bootstrap. They run in a fixed order after `set.seed(2026)`.
 
-The de-identified trial file was built from the private raw VALD export by `R/00_extract_from_raw.R` in the BAICONF repository. That step needs the raw recordings and the code key, so it is not part of this repository.
+The de-identified trial file was built from the private raw VALD export by the extraction script of the BAICONF analysis; a copy is kept here as `R/00_extract_from_raw_private.R` for the record. It needs the raw recordings and the code key (`RAW_ROOT`), which are not in this repository, so it cannot be run from here and is not part of the pipeline. Everyone else starts at `R/run_all.R` with `data/cmj_trials_deidentified.csv`.
 
 ## Reproduction of the BAICONF 2026 analysis
 `R/run_all.R` reproduces all 42 values checked against the delivered BAICONF analysis report, exactly at the printed precision (`outputs/reproduction_check.csv`). Every table of the earlier multi-script analysis was also compared at full precision, for both landing windows, and the maximum absolute difference was 0.
