@@ -45,3 +45,6 @@ python3 tools/verify_references.py   # optional
 ## Never commit
 - The raw VALD export (parquet recordings, `*_trials.json`, `tests.csv`, `profiles.json`), the code key / codebook, `.env` files,
   `outputs/*/intermediate/`, LaTeX aux/log files (all covered by `.gitignore`).
+
+## Cited papers
+- `papers/` holds legally available copies (open access, preprints, accepted manuscripts, official manuals) of the works cited in the paper. `papers/README.md` lists every cited work with its DOI, what version is stored, and why any item is link-only (paywalled or a book).
