@@ -10,33 +10,30 @@ Sources for the requirements (the ScienceDirect guide itself returned 400/403 to
 
 | # | Requirement | How it is met | File |
 |---|---|---|---|
-| 1 | Double-blind review; author names/affiliations only on the cover page | Manuscript has no names, affiliations, acknowledgements, ORCID or funding; DOCX author metadata blanked | `IIMB_BAICONF2026_Manuscript_anonymised.docx/.pdf` |
-| 2 | Cover page: title, short title (≤5 words), all authors in order, affiliations, postal address, phone, fax, email, corresponding author | Done; Usha Ananthakumar's phone/email/ORCID and fax left as placeholders | `IIMB_BAICONF2026_Title_Page.docx/.pdf` |
-| 3 | Second page: title, short title, abstract ≤100 words, ≤8 keywords, extended summary ≤300 words | Abstract 100 words; 8 keywords; extended summary 300 words (new text condensed from the paper; numbers from the R run) | manuscript p. 1–2 |
-| 4 | Length: up to 8,000 words (IIMB page; older PDF says 8,000–10,000 incl. tables and figures) | Front matter 434 + main text with tables and captions 6,153 + declarations 163 = 6,750; with references 8,142. Nothing was cut | – |
-| 5 | Times New Roman 12 pt, double spaced | DOCX: Times New Roman 12, double spacing (tables 10 pt single). PDF: TeX Gyre Termes (Times clone) 12 pt, double spaced, A4, 1-inch margins | both |
-| 6 | Tables/figures numbered serially in order of mention, with notes/legends, abbreviations expanded | Tables 1–6 and Figures 1–6 in mention order, each table has a Note; captions expand abbreviations | manuscript |
-| 7 | Tables and figures also in a separate Word file | Done | `IIMB_BAICONF2026_Exhibits_Tables_Figures.docx/.pdf` |
-| 8 | Exhibits in black and white only (older IIMB PDF) | **Not met – open item.** Figures are colour (Okabe–Ito, colour-blind safe) and captions refer to colours; converting would need re-wording captions and re-drawing in R | – |
-| 9 | British spelling | Text already uses British spelling (normalised, centre, programme) | – |
-| 10 | References: APA author–date, alphabetical | Rebuilt by pandoc citeproc with APA 7 CSL from the paper's `references.bib` (all DOIs previously Crossref-checked); no field codes | manuscript |
-| 11 | Managerial insights emphasised | "Practical applications" renamed "Practical and managerial implications"; extended summary ends with implications for programme managers. **Suggest Praveen adds 1 short paragraph on decision-making value for high-performance centres** (not written, to avoid inventing claims) | – |
-| 12 | Declarations (Elsevier): competing interests, funding, data availability, generative-AI use | Sections present at end of manuscript; wording still `[AUTHORS TO COMPLETE]` where the paper had TODOs | manuscript |
-| 13 | Originality confirmation (original, not published, not under consideration elsewhere, copyright) | Statement drafted on title page for authors to confirm | title page |
-| 14 | Written permission for non-public organisational data | Placeholder on title page | title page |
-| 15 | Highlights (Elsevier usual; not confirmed as mandatory for IMR) | 5 bullets, each ≤85 characters | `IIMB_BAICONF2026_Highlights.docx/.pdf` |
-| 16 | Ethics approval / consent (minors) | Placeholder kept in Methods | manuscript |
-| 17 | Text boxes for background/case material (IIMB preference "wherever possible") | Not used; no case material in the paper | – |
+| 1 | Double-blind review | Manuscript has no names, affiliations, centre name, acknowledgements, ORCID or repository link; centre described as "a private sports physiotherapy and performance centre in India"; DOCX/PDF author metadata blank | `IIMB_BAICONF2026_Manuscript_anonymised.docx/.pdf` |
+| 2 | Cover page: title, short title, authors in order, affiliations, postal address, phone, fax, email, corresponding author | Complete. Usha Ananthakumar's office address, phone (+91 22 2576 7786), email (usha@som.iitb.ac.in) and ORCID (0000-0003-1983-2168, verified on pub.orcid.org) taken from public SJMSOM/ORCID pages; fax "not available" for both | `IIMB_BAICONF2026_Title_Page.docx/.pdf` |
+| 3 | Abstract <=100 words, <=8 keywords, extended summary <=300 words | Abstract 100 words; 8 keywords; extended summary ~297 words | manuscript pp. 1-2 |
+| 4 | Up to 8,000 words | Main text incl. front matter, tables, captions and declarations ~7,460 words; ~8,880 incl. references. Nothing cut | - |
+| 5 | Times 12 pt, double spaced | LaTeX: newtx (Times) 12 pt, double spaced, A4, 1-in margins, line numbers. DOCX: Times New Roman 12, double | both |
+| 6 | Tables/figures numbered in order of mention, with notes | Tables 1-6, Figs 1-5 (pipeline diagram removed 13 Nov; old Figs 2-6 renumbered 1-5; pipeline described in prose in Section 3.1) | manuscript |
+| 7 | Tables and figures also in a separate file | Done (LaTeX PDF + DOCX) | `IIMB_BAICONF2026_Exhibits_Tables_Figures.*` |
+| 8 | Exhibits black and white (older IIMB PDF) | **Open.** Figures are colour (colour-blind-safe palette); captions refer to colours | - |
+| 9 | British spelling | Yes | - |
+| 10 | References APA 7 | biblatex-apa + Biber (Overleaf); pandoc citeproc APA CSL (DOCX) | - |
+| 11 | Managerial implications | Section 6 "Managerial and practical implications", grounded in the reported findings | - |
+| 12 | Declarations (competing interests, funding, data availability, generative AI) | Filled: no competing interests; no specific funding; data availability (raw data owned by the centre under NDA; code and de-identified data on request); AI tools assisted language editing and code review, authors take responsibility | manuscript + title page |
+| 13 | CRediT | P.C.: Conceptualisation, Data curation, Formal analysis, Methodology, Software, Visualisation, Writing - original draft; U.A.: Supervision, Writing - review and editing | title page |
+| 14 | Permission for non-public organisational data | Stated as covered by the signed NDA / data-sharing agreement with PhysioQinesis / Performance Lab | title page |
+| 15 | Highlights | 5 bullets, each <=85 characters | `IIMB_BAICONF2026_Highlights.*` |
+| 16 | Ethics approval / consent (minors) | **Open - only visible placeholder left** (Section 3.2) | manuscript |
+| 17 | Overleaf project | `IIMB_BAICONF2026_overleaf.zip` (root = main.tex), pdfLaTeX + Biber, 0 overfull boxes | - |
 
-## Open items for Praveen (only he can decide or supply)
-1. **Dual-submission conflict.** The same analysis is prepared as a *Sports Biomechanics* article (`hidden-jump-strategies-forceplate`, not submitted). IMR requires the paper not be under consideration elsewhere. Decide which journal gets this version before submitting either.
-2. Ethics committee name, approval number, consent/assent for under-18 athletes (77% of athletes were minors), Declaration of Helsinki statement.
-3. Centre name or description, testing period, data-sharing agreement, and written permission from the centre (IMR asks for this for non-public organisational data).
-4. Test protocol details (warm-up, arm position, landing instruction, trials, rest, acceptance criteria).
-5. Funding statement; confirm "no competing interests"; acknowledgements.
-6. Generative-AI declaration wording (suggested text is in the manuscript).
-7. Data-availability statement: repository URL/DOI; data owner; terms for raw-data requests. The GitHub repo is private.
-8. Co-author details: Usha Ananthakumar's phone, email and ORCID; CRediT roles; author order; her approval of this version.
-9. Numbers differ from the submitted abstract (817/213, 71%, 5–17% vs 805/212, 74.8%, 2.7–13.1%). Decide whether to tell the BAICONF organisers.
-10. Colour vs black-and-white figures (row 8).
-11. Fees: IMR lists an APC of USD 1,200 (DOAJ), which IIMB has said it bears on authors' behalf. Confirm before accepting publication. BAICONF registration fee: not confirmed for 2026 (2015 rates were INR 2,500–4,500); the DCAL site blocked automated access.
+## Open items for Praveen
+1. **Ethics** (the one visible placeholder): committee name, approval number/date, consent/assent for under-18 athletes (77% of athletes) or waiver, Declaration of Helsinki statement.
+2. **Dual submission**: the same analysis exists as a Sports Biomechanics manuscript (not submitted). The title page confirms "not under consideration elsewhere" - keep it that way.
+3. Confirm the wording added without a source: test protocol sentence ("administered by the centre's staff as part of routine assessments ... warm-up, verbal instructions and rest intervals were not recorded with the data, and landing technique was not standardised"); the data-availability promise (code and de-identified data on request); the prior-presentation wording; CRediT roles; Usha's details and her approval.
+4. Testing period "November 2022 to April 2026" = first and last recorded dates (IST) of the 327 analysed sessions.
+5. Colour vs black-and-white figures.
+6. Numbers differ from the submitted BAICONF abstract (817/213, 71%, 5-17% vs 805/212, 74.8%, 2.7-13.1%).
+7. Fees: IMR APC USD 1,200 reportedly borne by IIMB; BAICONF 2026 registration fee not confirmed.
+8. Raw VALD data are excluded from every zip and from Git; on the box they are quarantined in `_PRIVATE_raw_do_not_transfer/`.

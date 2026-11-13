@@ -4,9 +4,11 @@ BAICONF 2026 (IIM Bangalore) full paper, submission BAI2575, formatted for *IIMB
 Authors: Praveen Chougale (Koita Centre for Digital Health, IIT Bombay) and Usha Ananthakumar (SJMSOM, IIT Bombay).
 Package built 13 November 2026.
 
-> **PRIVATE – contains identifiable athlete data.** `raw/` holds the original VALD ForceDecks export and the
-> pseudonym key. Many athletes were under 18. Do not upload `raw/` to a public repository, journal portal,
-> Zenodo or any shared drive without the data owner's written permission and ethics approval.
+> **Raw VALD data are NOT included in this copy (13 Nov 2026, at the authors' request).** `raw/` contains only a
+> README. The original VALD ForceDecks export and the pseudonym key identify athletes (many under 18) and are covered by
+> the non-disclosure / data-sharing agreement with PhysioQinesis / Performance Lab; the authors hold them separately.
+> To rerun from raw, copy the export into `raw/vald/` and the keys into `raw/private_keys/`; otherwise run
+> `SKIP_RAW=1 Rscript R/00_run_all.R`, which starts from the de-identified file `data/cmj_trials_deidentified.csv`.
 
 ## One command, raw data to every number in the paper
 
@@ -29,7 +31,8 @@ All paths are relative to this folder. The console output is saved to `output/ru
 Known differences (documented, not fixed by changing numbers):
 - The **submitted BAICONF abstract** (`paper/original/BAICONF2026_submitted_abstract_BAI2575.docx`) came from an earlier analysis whose code was not found: 817 trials / 213 athletes, 71% variance, 5–17% R². This pipeline gives 805 / 212, 74.8%, 2.7–13.1%. The manuscript reports only this pipeline's numbers.
 - **Bug fixed in this package:** the original LaTeX Table 1 printed `5%` unescaped, so LaTeX dropped the rest of row R2 (813 trials) in the original PDFs. `R/03_analysis.R` line 427 now escapes it; no numbers change.
-- Figure 1 (pipeline diagram) is a TikZ drawing, not an R output; it is taken from the paper source.
+- **Figure numbering:** the pipeline diagram (old Figure 1) was removed from the IIMB manuscript. The R script still writes the files under their original names `Fig2_`–`Fig6_`; in the IIMB manuscript and Overleaf project they are Figures 1–5 (Fig2→Fig. 1, Fig3→Fig. 2, Fig4→Fig. 3, Fig5→Fig. 4, Fig6→Fig. 5).
+- `overleaf/` (in the zip package: `paper/iimb_formatted/overleaf/`) is the Overleaf-ready LaTeX source (pdfLaTeX + Biber) of the manuscript, title page, highlights and exhibits.
 
 ## Folder map
 | Path | Contents |

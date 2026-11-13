@@ -1,0 +1,219 @@
+\section{Introduction}
+\label{sec:intro}
+
+The countermovement jump (CMJ) performed on force platforms is one of the most widely used tests in team sports. It is quick to administer, places little demand on the athlete and is sensitive to training and to neuromuscular fatigue \parencite{claudino2017,gathercole2015}. Commercial systems detect the phases of the jump automatically and return a large number of variables for every trial, including jump height, peak forces, phase impulses and phase durations \parencite{mcmahon2018}. In routine practice, however, decisions rest on a small subset of these values. Practitioners are advised to select a limited set of metrics suited to the question at hand, whether performance profiling, fatigue monitoring or return to sport \parencite{bishop2023}. Athletes with similar values on those metrics are then treated, implicitly, as having jumped in a similar way.
+
+This practice raises a measurement question that is common to many data-rich organisations: whether the summary indicators produced by a measurement system retain the information that matters for decisions, or whether part of the recorded signal is discarded. In sport, the question is sharpened by what is known about human movement. The same outcome can be achieved through different coordinative solutions, and variability in task execution is regarded as a functional property of the neuromusculoskeletal system rather than as noise \parencite{davids2003,bartlett2007,preatoni2013}. It is therefore plausible that two jumps of equal height are produced, and absorbed, in quite different ways.
+
+The present study examines this possibility in routinely collected force-plate data from male footballers in India. It analyses the complete take-off and landing force--time curve of each jump, rather than a set of pre-selected points, and asks three questions. First, what are the principal modes of variation of the curve, and how can they be interpreted biomechanically? Second, are trials that are matched on jump height, or on relative concentric peak force, more alike in curve shape than the sample as a whole? Third, how much of each mode of variation is explained by four conventional vendor metrics together with age and body mass, when the repeated trials of each athlete are taken into account? The study also partitions curve-shape variation between athletes, sessions and trials, and examines the sensitivity of the conclusions to the definition of the landing phase.
+
+The study contributes to the literature in three ways. It quantifies directly, through a matched-band design, how far conventional metrics fail to capture curve shape; it incorporates the landing phase, which is recorded in every trial but is usually discarded; and it evaluates explained variance with schemes that respect the repeated-measures structure of monitoring data. The remainder of the paper is organised as follows. Section~\ref{sec:lit} reviews the relevant literature, Section~\ref{sec:methods} describes the data and methods, and Section~\ref{sec:results} presents the results. Section~\ref{sec:discussion} discusses the findings, Section~\ref{sec:implications} sets out managerial and practical implications, Section~\ref{sec:limitations} notes limitations and directions for further research, and Section~\ref{sec:conclusion} concludes.
+
+\section{Literature review}
+\label{sec:lit}
+
+\subsection{Discrete force-plate metrics in athlete monitoring}
+
+For the vertical jump, no single kinetic or temporal variable fully accounts for performance \parencite{dowling1993}. Athletes of different jumping ability differ in how force is distributed across the unweighting, braking and propulsion phases \parencite{sole2018}; force--time characteristics differ by sex and sport \parencite{laffaye2014}; and the manner in which force is produced within individual sub-phases is related to performance \parencite{harry2018}. Recent work distinguishes performance metrics, such as jump height, from strategy variables, such as countermovement depth and phase durations \parencite{harry2024}. Strategy-based CMJ variables have been shown to detect fatigue when jump height does not \parencite{gathercole2015}, and analyses of whole force--, velocity-- and power--time curves have described training-induced changes across the curve rather than at single points \parencite{cormie2009}. These findings suggest that the metrics reported routinely provide an incomplete description of how a jump is performed.
+
+\subsection{Waveform analysis of force--time curves}
+
+Waveform methods describe the whole curve without requiring variables to be selected in advance. Principal component analysis (PCA) of time-normalised waveforms, and its functional counterpart, decompose a set of curves into a small number of orthogonal modes of variation, each with a score for every trial \parencite{jolliffe2002,ramsay2005,jolliffe2016}. In biomechanics, these methods have been applied to gait waveforms in knee osteoarthritis \parencite{deluzio2007}, knee kinematics in the vertical jump \parencite{ryan2006}, running kinematics in Achilles tendinopathy \parencite{donoghue2008} and on-water rowing \parencite{warmenhoven2019}, and principled approaches to interpreting the components have been proposed \parencite{brandon2013}. For vertical jumps, dimensionality-reduction techniques describe performance-related aspects of the curve better than discrete points \parencite{richter2014b}, principal component waveform analysis identifies improvements in jump performance \parencite{floria2019}, and alignment of curves on biomechanical events increases the information that can be extracted from them \parencite{richter2014a,moudy2018}.
+
+\subsection{The landing phase and the research gap}
+
+The landing that follows every CMJ is usually discarded, although it is recorded on the same plates within the same trial. Landing kinetics are nonetheless of independent interest. Stiff landings with high vertical forces have been associated with anterior cruciate ligament injury risk in young female athletes \parencite{leppanen2017}, jumping and landing variables have some utility as predictors of injury \parencite{pedley2020}, and CMJ landing characteristics change with the effort that athletes perceive themselves to be making \parencite{hite2025}. Moreover, although waveform studies show that curves carry information beyond discrete variables, the extent to which routinely reported metrics fail to capture curve shape has rarely been quantified directly, and, to the authors' knowledge, it has not been examined by asking whether jumps matched on those metrics have matched curves. Routinely collected data from youth football, in which large numbers of tests are performed under field conditions, provide an opportunity to address this question at a realistic scale.
+
+\section{Data and methodology}
+\label{sec:methods}
+
+\subsection{Research design}
+
+The study is a retrospective, cross-sectional analysis of routinely collected force-plate data. The analysis proceeded in five stages. Raw force-plate exports were first de-identified and screened with pre-specified quality-control rules. Each retained trial was then normalised to body weight, and its take-off and landing phases were time-normalised and concatenated into a single curve. PCA of these curves yielded component scores for every trial. The scores were subsequently used in three analyses: dispersion among trials matched on conventional metrics, the variance explained by those metrics, and the partition of variance between athletes, sessions and trials. Finally, the complete analysis was repeated with an alternative definition of the landing phase. Quality-control rules, phase definitions, the number of retained components and the matched-band definition were fixed before any result was examined, and no choice was tuned on the data.
+
+\subsection{Data source and participants}
+
+The data comprise countermovement jumps performed by male football players during routine testing at a private sports physiotherapy and performance centre in India between \testPeriod. The data were made available to the authors under a signed non-disclosure and data-sharing agreement between the centre and the authors. All CMJ trials of male football players available through the vendor's external application programming interface were extracted (\nTrialsAll{} trials from \nAthAll{} athletes in \nSessAll{} sessions). Before analysis, athletes, tests and trials were replaced by pseudonymous codes. The analysis files contain no names, team names, dates of birth, test dates or vendor identifiers, and the key linking codes to athletes is held separately by the first author. Age at test was computed before de-identification and rounded to 0.1 year. Of the \nAth{} analysed athletes, \nMinors{} (\pctMinors\%) were under 18 years of age at their first analysed test. \authorsto{name of the ethics committee, approval number and date; consent of athletes and parental or guardian consent for those under 18 years, or the waiver of consent for secondary use of routine monitoring data; and a statement that the study conformed to the Declaration of Helsinki}
+
+\subsection{Instrumentation and test protocol}
+
+Trials were recorded on VALD ForceDecks dual force platforms (VALD Performance, Brisbane, Australia), which record the vertical ground reaction force under each foot; total vertical force was the sum of the two plates. Most trials were sampled at 1000\,Hz; \nFsLow{} trials were recorded at 500\,Hz, which does not affect the analysis because every phase was resampled to a common grid (Section~\ref{sec:curves}). Each session contained one or more trials (median \trialsPerSessMedian{} per session), and athletes contributed a median of \sessPerAthMedian{} session (maximum \sessPerAthMax). Tests were administered by the centre's staff as part of routine assessments rather than under a research protocol; the warm-up, verbal instructions and rest intervals were therefore not recorded with the data, and landing technique was not standardised. The vendor software identified movement onset and returned, for every trial, the four metrics used in this study, namely jump height (from flight time), concentric peak force, eccentric braking impulse and concentric impulse over the first 100\,ms of the concentric phase, together with contraction time, flight time, countermovement depth and peak landing force, which were used only for interpretation.
+
+\subsection{Event detection and phase definitions}
+\label{sec:events}
+
+Three events were taken from the vendor output: movement onset $t_{\mathrm{on}}$; take-off $t_{\mathrm{to}} = t_{\mathrm{on}} + T_{\mathrm{c}}$, where $T_{\mathrm{c}}$ is the contraction time; and touch-down $t_{\mathrm{td}} = t_{\mathrm{to}} + T_{\mathrm{f}}$, where $T_{\mathrm{f}}$ is the flight time \parencite{owen2014,mcmahon2018,harry2020}. The take-off phase ran from $t_{\mathrm{on}}$ to $t_{\mathrm{to}}$. In the main analysis, the landing phase ran from touch-down to the lowest point of the centre of mass (COM), that is, the instant at which the downward velocity acquired during the fall is first brought to zero, which marks the end of impact absorption. The vertical velocity of the COM was obtained by integrating the impulse--momentum relationship from touch-down \parencite{linthorne2001,street2001}:
+\begin{equation}
+v(t) = -\frac{g\,T_{\mathrm{f}}}{2} + \int_{t_{\mathrm{td}}}^{t} \frac{F(s) - m g}{m}\,\mathrm{d}s,
+\qquad
+t_{\mathrm{lc}} = \min\{\, t > t_{\mathrm{td}} : v(t) \ge 0 \,\},
+\label{eq:velocity}
+\end{equation}
+where $F$ is the total vertical force, $m$ the body mass, $g = 9.81$\,m\,s$^{-2}$, and the initial value is the touch-down velocity implied by a symmetrical flight. The landing phase in the main analysis was therefore $[t_{\mathrm{td}}, t_{\mathrm{lc}}]$. Because no consensus definition of the end of the CMJ landing exists, a sensitivity analysis used a fixed window from touch-down to 1\,s after touch-down, which is the end of the vendor's trial record.
+
+\subsection{Quality control}
+
+Five rules were applied in order (Table~\ref{tab:qc}). Trials were excluded if the vendor body mass was missing or invalid (R1), because every curve is divided by body weight; if the mass estimated from quiet stance before the jump differed from the vendor body mass by more than 5\% (R2), which indicates an incorrectly entered mass or an athlete who was not still; if the mean force recorded during flight exceeded 50\,N (R3), which indicates contact with the plate during flight or an event-detection error; if any of the four metrics or age was missing (R4); or, in the main analysis only, if the lowest point of the COM could not be identified within the recorded landing (R5).
+
+\input{tables/tab1_qc}
+
+\subsection{Curve construction}
+\label{sec:curves}
+
+Force was expressed in multiples of body weight, $\tilde F(t) = F(t)/(m g)$, so that curves of athletes of different mass are directly comparable and a value of one corresponds to quiet standing. Each phase $[t_a, t_b]$ was then resampled by linear interpolation at 101 equally spaced instants:
+\begin{equation}
+\tilde F^{(p)}_k = \tilde F\!\left(t_a + \tfrac{k}{100}\,(t_b - t_a)\right), \qquad k = 0, 1, \ldots, 100.
+\end{equation}
+This procedure aligns take-off at the end of the first block and touch-down at the start of the second, a simple form of landmark registration \parencite{ramsay2005,richter2014a,moudy2018}. Time-normalising the whole trial to a single scale was rejected because the same event would then fall at different percentages in different trials, so that differences in timing would be confounded with differences in shape. The flight phase was omitted. During flight the force is zero, so this portion of the curve carries no information about force production other than its duration, which determines flight-time jump height \parencite{linthorne2001}; retaining it would allow the analysis to recover a conventional metric from the length of a block. Each trial was therefore represented by the vector $\mathbf{x}_i \in \mathbb{R}^{202}$ formed by the take-off block followed by the landing block.
+
+\subsection{Principal component analysis}
+
+PCA was applied to the $n \times 202$ matrix of curves \parencite{jolliffe2002,jolliffe2016}. Because all points share the same unit, the analysis used the covariance matrix of the centred curves without scaling:
+\begin{equation}
+\mathbf{S} = \frac{1}{n-1}\sum_{i=1}^{n}(\mathbf{x}_i - \bar{\mathbf{x}})(\mathbf{x}_i - \bar{\mathbf{x}})^{\top} = \mathbf{V}\boldsymbol{\Lambda}\mathbf{V}^{\top},
+\qquad
+z_{ik} = \mathbf{v}_k^{\top}(\mathbf{x}_i - \bar{\mathbf{x}}),
+\end{equation}
+where $\mathbf{v}_k$ is the $k$th loading vector (of unit length), $\lambda_k$ its eigenvalue and $z_{ik}$ the score of trial $i$ on component $k$; the proportion of variance explained by component $k$ is $\lambda_k / \sum_j \lambda_j$. Four components were retained, as specified before the analysis, and the sign of each loading vector was fixed so that its largest absolute element was positive. Components were interpreted in three ways: by reconstructing the curves $\bar{\mathbf{x}} \pm 2\sqrt{\lambda_k}\,\mathbf{v}_k$, which show the effect of a two-standard-deviation change in the score \parencite{brandon2013,warmenhoven2019}; by the share of each component located in the landing phase, $\sum_{j \in \mathcal{L}} v_{jk}^2$, where $\mathcal{L}$ indexes the 101 landing points; and by Pearson correlations of the scores with interpretable descriptors (peak landing force relative to body weight, landing duration $t_{\mathrm{lc}} - t_{\mathrm{td}}$, contraction time, countermovement depth, the four vendor metrics, age and body mass).
+
+\subsection{Matched-band dispersion}
+
+To test whether equal conventional scores imply equal curves (the second research question), trials between the 45th and 55th percentiles of jump height were selected, together with, separately, trials between the same percentiles of concentric peak force relative to body weight. For each component, the dispersion ratio
+\begin{equation}
+\rho_k = \frac{\mathrm{SD}(z_{k} \mid i \in \mathcal{B})}{\mathrm{SD}(z_{k})}
+\end{equation}
+compares the standard deviation of the score among trials in band $\mathcal{B}$ with that in the full sample. A ratio close to one indicates that fixing the metric does not make curves more alike, whereas a ratio well below one indicates that the metric constrains curve shape. The same comparison was made for the whole curve as $\rho = \{\mathrm{tr}(\mathbf{S}_{\mathcal{B}})/\mathrm{tr}(\mathbf{S})\}^{1/2}$, where $\mathbf{S}_{\mathcal{B}}$ is the covariance matrix within the band. Because athletes contributed several trials, 95\% confidence intervals for $\rho_k$ were obtained from \nBoot{} bootstrap resamples of athletes, each resample including all trials of the selected athletes, with band limits held fixed \parencite{efron1993}.
+
+\subsection{Variance explained by conventional metrics}
+
+For the third research question, each component score was regressed by ordinary least squares on the four vendor metrics, age and body mass:
+\begin{equation}
+z_{ik} = \beta_{0k} + \sum_{q=1}^{6}\beta_{qk}\,w_{iq} + \varepsilon_{ik},
+\end{equation}
+and the coefficient of determination $R^2_k$ was taken as the share of the component explained, so that $1 - R^2_k$ is the share left unexplained. Because in-sample $R^2$ is optimistic and trials of the same athlete are not independent, three further evaluations were made. In athlete-grouped five-fold cross-validation, athletes rather than trials were allocated to folds \parencite{roberts2017}, and the out-of-sample coefficient was computed as $1 - \sum_i (z_{ik} - \hat z^{(-f)}_{ik})^2 / \sum_i (z_{ik} - \bar z_k)^2$, where $\hat z^{(-f)}_{ik}$ is the prediction from the model fitted without the fold containing trial $i$. The regressions were also refitted with one randomly selected trial per athlete and with athlete means of all variables.
+
+\subsection{Structure of repeated measurements}
+
+To establish whether component scores describe stable characteristics of athletes or vary from trial to trial, each score was decomposed with a three-level random-intercept model,
+\begin{equation}
+z_{ajt} = \mu + a_a + b_{aj} + e_{ajt}, \quad a_a \sim N(0, \sigma^2_{\mathrm{A}}),\; b_{aj} \sim N(0, \sigma^2_{\mathrm{S}}),\; e_{ajt} \sim N(0, \sigma^2_{\mathrm{T}}),
+\end{equation}
+for trial $t$ of session $j$ of athlete $a$, fitted by restricted maximum likelihood \parencite{pinheiro2000}. The shares of $\sigma^2_{\mathrm{A}}$, $\sigma^2_{\mathrm{S}}$ and $\sigma^2_{\mathrm{T}}$ in the total variance are reported; the between-athlete share is an intraclass correlation coefficient for a single trial \parencite{hopkins2000,koo2016}.
+
+\subsection{Sensitivity analyses and software}
+
+The complete analysis was repeated with the 1-s landing window, and the width of the jump-height band was varied (40th--60th percentile, and median $\pm$ 1\,cm and $\pm$ 2\,cm). All analyses were run by a single R script in R 4.5.3 \parencite{rcore2026} with the packages dplyr, tidyr, ggplot2 \parencite{wickham2016}, patchwork and nlme \parencite{pinheiro2000}; every random step (cross-validation folds, one-trial selection and the bootstrap) used seed \seedValue. The script writes every table, figure and number reported in this article. A preliminary version of the analysis was summarised in a conference abstract; rerunning the script from the de-identified data reproduced all \nReproTotal{} values checked against the corresponding analysis report. Statistical reporting followed recommendations for sports medicine and exercise science \parencite{hopkins2009}.
+
+\section{Results}
+\label{sec:results}
+
+\subsection{Sample characteristics}
+
+Of \nTrialsAll{} trials, \nTrials{} trials from \nAth{} athletes in \nSess{} sessions met all quality-control criteria (Table~\ref{tab:qc}); the 1-s landing window retained \nTrialsS{} trials, because the lowest point of the COM could not be identified in \nLowcomMissing{} trials. The median age of athletes at their first analysed test was \ageMedian{} years (interquartile range \ageQone--\ageQthree{}; range \ageMin--\ageMax), and athletes contributed \trialsPerAthMean{} trials on average (maximum \trialsPerAthMax). Mean jump height was \jhMean{} $\pm$ \jhSD{}\,cm, and peak landing force ranged from \lpfMin{} to \lpfMax{} times body weight (Table~\ref{tab:desc}).
+
+\input{tables/tab2_descriptives}
+
+\subsection{Modes of variation of the force--time curve}
+
+The mean curve showed the expected unweighting, braking and propulsion pattern in the take-off phase and a large, variable force peak in the landing phase (Fig.~\ref{fig:mean}A). Point-wise dispersion was considerably greater during landing than during take-off. The first component explained \varPCA\% of the variance, and the four retained components together explained \cumFour\% (Fig.~\ref{fig:mean}B); ten components were required to explain \cumTen\%.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{Fig1_mean_curve_scree}
+\caption{\capMean}
+\label{fig:mean}
+\end{figure}
+
+All four retained components were located almost entirely in the landing phase, which held \ldsPCD--\ldsPCB\% of their squared loadings (Table~\ref{tab:pcs}). PC1 (\varPCA\%) contrasted landings in which force rose to a large peak at about \peakPCA\% of the landing phase and remained well above body weight until the lowest point of the COM with landings in which force peaked early and then declined (Fig.~\ref{fig:pcs}). Its strongest correlate was landing duration ($r$~=~\rLdPCA): high scores denote short, stiff landings in which downward momentum is arrested quickly. PC1 was moderately related to peak landing force ($r$~=~\rLpfPCA) and essentially unrelated to contraction time ($r$~=~\rCtPCA) and countermovement depth ($r$~=~\rCmdPCA). PC2 to PC4 (\varPCB\%, \varPCC\% and \varPCD\%) described the timing and number of landing force peaks, contrasting single early peaks, single later peaks and double-peaked landings, with their largest loadings at \peakPCB\%, \peakPCC\% and \peakPCD\% of the landing phase. Peak landing force correlated with every component ($r$ = \lpfCorRange), whereas the correlations with contraction time and countermovement depth did not exceed \ctAbsMax{} and \cmdAbsMax{} in absolute value, and those with the vendor metrics did not exceed \vendorAbsMax.
+
+\input{tables/tab3_components}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{Fig2_pc_reconstructions_main}
+\caption{\capPCs}
+\label{fig:pcs}
+\end{figure}
+
+\subsection{Curve shape among trials matched on conventional metrics}
+
+The jump-height band contained \jhBandN{} trials from \jhBandAth{} athletes with a jump height of \jhBandMean{} $\pm$ \jhBandSD{}\,cm, a standard deviation \jhBandSDfactor{} times smaller than that of the full sample. Within this band, take-off curves were similar, but landing curves differed widely (Fig.~\ref{fig:band}A). Matching on jump height reduced the dispersion of PC1 only modestly (ratio \jhRatioPCA, 95\% CI \jhLoPCA--\jhHiPCA), and the ratios for the other components ranged from \jhRatioOtherRange; every confidence interval included one (Table~\ref{tab:band}; Fig.~\ref{fig:band}B). The dispersion of the whole curve was unchanged (ratio \wholeJh). Matching on relative concentric peak force had no discernible effect (component ratios \rpfRatioRange; whole curve \wholeRpf). The result did not depend on the width of the band: across four band definitions, the PC1 ratio ranged from \bwPCARange, and all ratios from \bwAllRange.
+
+\input{tables/tab4_bands}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{Fig3_matched_band}
+\caption{\capBand}
+\label{fig:band}
+\end{figure}
+
+\subsection{Variance explained by conventional metrics}
+
+The four vendor metrics, age and body mass explained \rtwoRange\% of the variance of the retained components, leaving \unexplRange\% unexplained (Table~\ref{tab:r2}; Fig.~\ref{fig:r2}). Explained variance was lower under athlete-grouped cross-validation (\cvRange\%) and similar when one trial per athlete (\oneTrialRange\%) or athlete means (\athMeanRange\%) were analysed; the low values were therefore not a consequence of treating repeated trials as independent.
+
+\input{tables/tab5_r2}
+
+Between-athlete differences accounted for \betweenRange\% of the variance of the component scores, differences between sessions of the same athlete for \sessRange\%, and differences between trials within a session for \withinRange\% (Table~\ref{tab:r2}). PC1 was the most athlete-specific component (\betweenPCA\% between athletes, \sessPCA\% between sessions); for PC2 to PC4, \withinPCB\%, \withinPCC\% and \withinPCD\% of the variance arose between trials within the same session.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{Fig4_variance_explained}
+\caption{\capRtwo}
+\label{fig:r2}
+\end{figure}
+
+\subsection{Sensitivity to the definition of the landing phase}
+
+When the landing phase ended 1\,s after touch-down, the impact occupied only the first few per cent of the landing block and the remainder approximated quiet standing (Fig.~\ref{fig:window}). The four components then explained \cumFourS\% of the variance, and PC3 became a take-off component (\ldsSPCCtakeoff\% of its squared loading in the take-off phase) that was strongly related to contraction time ($r$~=~\rCtSPCC) and relative concentric peak force ($r$~=~\rRpfSPCC). This component was largely explained by the conventional metrics ($R^2$ = \rtwoSPCC\%; \cvSPCC\% under cross-validation), whereas the three landing components remained poorly explained ($R^2$ = \rtwoLandingSRange\%; Table~\ref{tab:window}; Fig.~\ref{fig:r2}). PC1 was again a landing component related to peak landing force ($r$~=~\rLpfSPCA) and landing duration ($r$~=~\rLdSPCA). Matching on jump height reduced PC1 dispersion somewhat more under this definition (ratio \jhRatioSPCA, 95\% CI \jhLoSPCA--\jhHiSPCA), but the dispersion of the whole curve was again unchanged (ratio \wholeJhS).
+
+\input{tables/tab6_windows}
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\linewidth]{Fig5_pc_reconstructions_1s}
+\caption{\capWindow}
+\label{fig:window}
+\end{figure}
+
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Principal findings}
+
+This study examined whether countermovement jumps that score alike on conventional force-plate metrics also resemble one another in the shape of the force--time curve, and how much of that shape the metrics capture. Three findings emerge. First, when take-off and landing are analysed together, the dominant modes of variation lie in the landing, and the first describes how quickly the athlete arrests the fall. Second, jumps matched closely on jump height, or on relative peak force, were scarcely more alike in curve shape than jumps in general. Third, jump height, concentric peak force, eccentric braking impulse, early concentric impulse, age and body mass together explained no more than \rtwoPCC\% of the variance of any landing component, and less under cross-validation. Equal scores on these metrics therefore do not imply an equivalent jump. A further finding qualifies the interpretation of the components as strategies: most of their variance arose within athletes, between sessions and between trials of the same session.
+
+\subsection{Relation to previous research}
+
+The results are consistent with earlier evidence that discrete force-plate variables summarise the jump incompletely. \textcite{dowling1993} found that no single kinetic or temporal variable explained vertical jump performance well, \textcite{richter2014b} showed that dimensionality-reduction techniques captured performance-related features of the jump better than discrete points, and principal component waveform analysis has been used to identify features of the curve associated with improvements in performance \parencite{floria2019}. These studies, like most CMJ waveform analyses \parencite{cormie2009,sole2018,harry2018}, examined the propulsive part of the jump and asked how curve features relate to performance. The present study reverses the question and asks how much of the curve the performance metrics account for. The matched-band analysis offers a direct answer to this question because it holds jump height almost constant and observes the variation that remains.
+
+The sensitivity analysis clarifies where the unexplained variation lies. With the 1-s landing window, a take-off component emerged that described the duration and amplitude of the propulsive force and of which approximately two-thirds was explained by the conventional metrics. This is consistent with the close relationships between contraction time, relative peak force, impulse and jump height that follow from impulse--momentum mechanics \parencite{linthorne2001,mcmahon2018}, and with the distinction drawn between performance metrics and strategy variables \parencite{harry2024}. The metrics that practitioners usually report thus appear to be reasonable summaries of the take-off but convey little about the landing. Because the four vendor metrics were designed to describe propulsion, this result should not be interpreted as a deficiency of those metrics; rather, it indicates that the landing recorded in every trial contains substantial information that routine reports omit.
+
+The prominence of the landing is consistent with the wider literature. Landings that arrest the body quickly with high forces have been linked to injury risk in young female athletes \parencite{leppanen2017}, and landing kinetics have some utility as predictors of injury \parencite{pedley2020}. PC1, which separated short, stiff landings from longer and more compliant ones, corresponds closely to this construct. Its relation to landing duration follows from impulse--momentum principles: because the landing phase in the main analysis ends when the downward velocity reaches zero, the mean force over the phase is determined by the touch-down velocity and the duration of the landing, so that a shorter landing must be accompanied by higher forces. The weaker correlation with peak landing force indicates that the component describes the time course of force rather than its maximum alone.
+
+\subsection{Trial-to-trial variability and the interpretation of strategies}
+
+Between-athlete differences accounted for at most \betweenPCA\% of the variance of any component, which corresponds to poor single-trial reliability by conventional benchmarks \parencite{koo2016}, and for PC2 to PC4 most of the variance arose between trials of the same session. The landing differences among jumps matched on jump height therefore appear to reflect, to a large extent, how a given athlete landed on a given trial rather than a fixed characteristic of that athlete. This interpretation accords with the view that movement variability is an intrinsic and often functional feature of skilled performance \parencite{davids2003,bartlett2007,preatoni2013}, and with the known sensitivity of CMJ variables to the number of trials and to protocol details \parencite{cormack2008,heishman2020}. Landing behaviour is also likely to depend on instructions and perceived effort \parencite{hite2025}, which were not standardised for landing in routine testing. The term \emph{strategy} should therefore be understood here as the manner in which a trial was executed; whether athletes possess stable landing strategies can be established only from repeated, standardised landings.
+
+\subsection{Methodological considerations}
+
+Two analytical choices had a considerable influence on the results and merit reporting in any similar study. The first is the definition of the end of the landing. Ending the landing at the lowest point of the COM confines the landing block to impact absorption and makes landing timing comparable across trials, whereas a fixed window devotes most of the block to quiet standing and compresses the impact into a few points; this lowered the variance captured by four components from \cumFour\% to \cumFourS\% and altered the composition of the components. The second is the scaling of the curve. Covariance PCA of body-weight-normalised force weights each part of the curve in proportion to its variance; because landing forces are larger and more variable than take-off forces, the take-off contributes little to the leading components unless the landing is short or analysed separately. Neither choice is inherently preferable, but the two address different questions, and the matched-band and regression results should be interpreted accordingly. Alignment on further events, such as the landing force peak \parencite{moudy2018}, functional PCA \parencite{ramsay2005,warmenhoven2019} and statistical parametric mapping \parencite{pataky2013} are natural extensions.
+
+\section{Managerial and practical implications}
+\label{sec:implications}
+
+The findings have four implications for practitioners and for those who manage athlete-monitoring programmes. First, two athletes with the same jump height may land very differently; ranking or grouping athletes on jump height alone therefore conceals differences in landing mechanics. Second, the landing is recorded in every CMJ at no additional cost, and simple landing descriptors, in particular landing duration to the lowest point of the COM and peak landing force relative to body weight, capture much of the dominant landing component and could be added to routine reports. Third, because landing shape varied considerably between trials, decisions should be based on the mean of several trials, or on repeated sessions, rather than on a single landing. Fourth, unusual landing curves should prompt closer observation of how an athlete lands, under standardised instructions, rather than a diagnosis, since their relationship with injury in footballers has not been established.
+
+More generally, the study illustrates a point relevant to organisations that rely on instrumented measurement. The summary indicators produced by commercial software are a design choice, and in these data they retained most of the information about the take-off but little about the landing. Applying a standard dimensionality-reduction technique to data that were already collected revealed variation that the routine indicators did not capture. Programme managers who invest in measurement systems may therefore benefit from periodically examining the full recorded signal before settling on a fixed set of reported indicators, while recognising, as these results show, that additional variation is useful for decisions only if it is reproducible across trials.
+
+\section{Limitations and directions for future research}
+\label{sec:limitations}
+
+Several limitations should be noted. Landing was not standardised in routine testing, so part of its variation may reflect instructions, habits or effort rather than neuromuscular capacity. The end of the landing depends on body mass and on a velocity estimated from flight time, both of which carry error \parencite{street2001}, and it could not be identified in \nLowcomMissing{} trials. The sample comprised male footballers from a single centre over a wide age range (\ageMin--\ageMax{} years), most of them adolescents. Maturity status was not recorded, although growth and maturation affect jump performance in youth athletes \parencite{malina2015,lloyd2012}, and the results may not generalise to female athletes, to other sports or to other age groups. The regressions were linear and used four metrics; other vendor variables, including landing variables, would explain more of the landing components, and non-linear models might explain somewhat more, although the weak correlations suggest that the gain would be limited. PCA on linearly time-normalised curves combines differences in timing and in amplitude. Finally, the number of components was fixed in advance rather than selected from the data; this avoids tuning but means that the remaining components, which together explained about a quarter of the variance, were not interpreted.
+
+Future studies could examine whether landing components are stable when landings are standardised and repeated, relate them to injury, fatigue and return-to-play outcomes in prospective designs, and extend the analysis to female athletes and other sports. Separate analysis of take-off and landing, registration on additional events, and functional or multivariate methods that combine curve shape with timing would help to distinguish strategy from execution variability. Establishing reference values for landing components across age and maturity would make this information usable in routine monitoring.
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+In male footballers, countermovement jumps matched closely on jump height, or on relative peak force, differed almost as much in the shape of their force--time curves as jumps in general. The dominant differences lay in how athletes absorbed the landing, above all in how quickly the fall was arrested, and the four conventional vendor metrics, together with age and body mass, explained little of them. These differences were, however, largely trial-specific. The landing phase of the CMJ, which is recorded in every trial but rarely reported, provides information that conventional take-off metrics do not, and it merits inclusion in routine force-plate reports, provided that it is interpreted over repeated trials.

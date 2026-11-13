@@ -1,0 +1,23 @@
+% Separate exhibits file (tables and figures), as requested by IIMB Management Review
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\begin{document}
+\begin{center}{\large\bfseries Exhibits (tables and figures) for: \papertitle\par}\end{center}
+\renewcommand{\ref}[1]{\textup{\csname exref@#1\endcsname}}
+\makeatletter
+\@namedef{exref@fig:window}{5}
+\makeatother
+\section*{Tables}
+\input{tables/tab1_qc}\clearpage
+\input{tables/tab2_descriptives}\clearpage
+\input{tables/tab3_components}\clearpage
+\input{tables/tab4_bands}\clearpage
+\input{tables/tab5_r2}\clearpage
+\input{tables/tab6_windows}\clearpage
+\section*{Figures}
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig1_mean_curve_scree}\caption{\capMean}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig2_pc_reconstructions_main}\caption{\capPCs}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig3_matched_band}\caption{\capBand}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig4_variance_explained}\caption{\capRtwo}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig5_pc_reconstructions_1s}\caption{\capWindow}\end{figure}
+\end{document}

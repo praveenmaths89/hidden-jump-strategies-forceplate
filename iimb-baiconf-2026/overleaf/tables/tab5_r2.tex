@@ -1,0 +1,25 @@
+% Generated from package/output/paper_tables_latex/tab5_r2.tex (R pipeline); only layout changed.
+\begin{table}[tbp]
+\centering
+\begin{threeparttable}
+\caption{Variance of each component score explained by the four vendor metrics, age and body mass, and decomposition of component-score variance (main analysis).}
+\label{tab:r2}
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}
+\toprule
+ & \multicolumn{5}{c}{$R^2$ on metrics, age and body mass (\%)} & \multicolumn{3}{c}{Variance of score (\%)} \\
+\cmidrule(lr){2-6}\cmidrule(l){7-9}
+Component & \makecell[r]{In-\\sample} & Adjusted & \makecell[r]{Athlete\\CV} & \makecell[r]{One trial\\per athlete} & \makecell[r]{Athlete\\means} & \makecell[r]{Between\\athletes} & \makecell[r]{Between\\sessions} & \makecell[r]{Within\\session} \\
+\midrule
+PC1 & 7.7 & 7.0 & 4.0 & 10.0 & 11.1 & 29.6 & 34.9 & 35.5 \\
+PC2 & 2.7 & 2.0 & 0.3 & 4.3 & 5.4 & 21.4 & 17.0 & 61.6 \\
+PC3 & 13.1 & 12.4 & 11.8 & 17.8 & 21.2 & 22.9 & 2.3 & 74.8 \\
+PC4 & 9.1 & 8.4 & 6.3 & 11.1 & 13.8 & 10.0 & 20.3 & 69.6 \\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note.} Predictors: jump height, concentric peak force, eccentric braking impulse, concentric impulse over the first 100\,ms, age and body mass (ordinary least squares). In-sample and adjusted values use all \nTrials{} trials. Athlete CV = out-of-sample $R^2$ from five-fold cross-validation with athletes, not trials, allocated to folds. One trial per athlete = one randomly drawn trial per athlete (\nAth{} trials). Athlete means = scores and predictors averaged within athlete. Variance shares come from a three-level random-intercept model (athlete, session within athlete, trial within session) fitted by restricted maximum likelihood.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}
