@@ -27,3 +27,9 @@ paper/*.lof
 paper/*.lot
 paper/floats/*.aux
 paper/floats/*.log
+
+# --- IIMB/BAICONF package: raw VALD export and keys stay private ---
+iimb-baiconf-2026/raw/*
+!iimb-baiconf-2026/raw/README.md
+iimb-baiconf-2026/output/*/intermediate/
+iimb-baiconf-2026/data/cmj_trials_deidentified.csv

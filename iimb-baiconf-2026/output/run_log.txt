@@ -1,0 +1,34 @@
+
+================ R/01_build_test_list.R ================
+[01] 2213 football tests built from raw; reference 2213; identical rows 2213; mismatches 0
+---- R/01_build_test_list.R finished in 0.4 s
+
+================ R/02_extract_trials_from_raw.R ================
+Wrote 833 trials from 215 athletes
+[02] vs original analysis file: same shape TRUE; max |diff| 0; NA pattern same TRUE; codes same TRUE
+---- R/02_extract_trials_from_raw.R finished in 23.6 s
+
+================ R/03_analysis.R ================
+[1] Loaded 833 trials, 215 athletes, 333 sessions
+
+==== Analysis: main_lowest_com (Touch-down to lowest centre of mass) ====
+                                          step trials athletes sessions
+1                 All male football CMJ trials    833      215      333
+2                          R1: valid body mass    828      212      329
+3 R2: quiet-stance mass within 5% of body mass    813      212      328
+4          R3: no force on plate during flight    811      212      327
+5                 R4: complete metrics and age    811      212      327
+6        R5: end of landing (lowest COM) found    805      212      327
+
+==== Analysis: sensitivity_1s (Touch-down to 1 s after touch-down) ====
+                                          step trials athletes sessions
+1                 All male football CMJ trials    833      215      333
+2                          R1: valid body mass    828      212      329
+3 R2: quiet-stance mass within 5% of body mass    813      212      328
+4          R3: no force on plate during flight    811      212      327
+5                 R4: complete metrics and age    811      212      327
+
+[12] Reproduction check: 42 of 42 report values reproduced exactly at printed precision
+
+Done in 9.4 s. R 4.5.3
+---- R/03_analysis.R finished in 9.4 s
