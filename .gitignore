@@ -32,4 +32,13 @@ paper/floats/*.log
 iimb-baiconf-2026/raw/*
 !iimb-baiconf-2026/raw/README.md
 iimb-baiconf-2026/output/*/intermediate/
-iimb-baiconf-2026/data/cmj_trials_deidentified.csv
+# de-identified trial file: needed by SKIP_RAW=1, kept in the repo (not raw data)
+iimb-baiconf-2026/overleaf/*.aux
+iimb-baiconf-2026/overleaf/*.log
+iimb-baiconf-2026/overleaf/*.bbl
+iimb-baiconf-2026/overleaf/*.bcf
+iimb-baiconf-2026/overleaf/*.blg
+iimb-baiconf-2026/overleaf/*.fls
+iimb-baiconf-2026/overleaf/*.fdb_latexmk
+iimb-baiconf-2026/overleaf/*.run.xml
+iimb-baiconf-2026/overleaf/*.out

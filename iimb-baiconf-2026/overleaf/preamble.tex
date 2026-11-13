@@ -10,6 +10,8 @@
 \usepackage{graphicx}
 \usepackage{booktabs,tabularx,array,makecell,threeparttable}
 \usepackage{pdflscape}
+\usepackage{float}                         % [H]: floats never split a sentence
+\usepackage{xurl}                          % DOIs break cleanly at line ends
 \usepackage[labelsep=period,font=small,labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
 \captionsetup[figure]{name=Fig.}
 \usepackage{xcolor}
@@ -18,9 +20,12 @@
 \usepackage[style=apa,backend=biber,uniquename=false]{biblatex}
 \addbibresource{references.bib}
 \usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\setlength{\biburlnumskip}{0mu}\setlength{\biburlucskip}{0mu}\setlength{\biburllcskip}{0mu}
+\AtBeginBibliography{\raggedright}
 \renewcommand{\cellalign}{tl}
 \renewcommand{\theadalign}{tl}
-\newcommand{\authorsto}[1]{\textbf{[AUTHORS TO COMPLETE: #1]}}
+\newcommand{\ethics}[1]{\textbf{#1}}   % ethics statement placeholder: replace the bracketed text, then remove the bold
 \input{numbers}
 \input{captions}
 \graphicspath{{figures/}}

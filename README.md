@@ -4,7 +4,17 @@ Code, de-identified data, outputs and the *Sports Biomechanics* manuscript (LaTe
 
 > Chougale, P., & Ananthakumar, U. *Same jump height, different jump: Principal component analysis of take-off and landing force–time curves reveals movement strategies that conventional force-plate metrics do not capture.* Manuscript prepared for *Sports Biomechanics*.
 
-This repository **extends the BAICONF 2026 submission** (IIM Bangalore, abstract BAI2575, *Revealing Hidden Jump Strategies Beyond Conventional Force-Plate Metrics*). It turns the conference analysis into a journal article and replaces the earlier set of scripts with one end-to-end R script.
+This repository **extends the BAICONF 2026 submission** (IIM Bangalore, submission BAI2575, *Revealing Hidden Jump Strategies Beyond Conventional Force-Plate Metrics*). It turns the conference analysis into a journal article and replaces the earlier set of scripts with one end-to-end R script.
+
+## IIMB Management Review / BAICONF 2026 paper (branch `iimb-baiconf-2026`)
+The folder [`iimb-baiconf-2026/`](iimb-baiconf-2026/) holds the code, de-identified data, outputs and LaTeX source of the paper *Revealing hidden jump strategies beyond conventional force-plate metrics* (IIMB Management Review). To reproduce every table, figure and in-text number from the de-identified data:
+
+```bash
+cd iimb-baiconf-2026
+Rscript install_packages.R          # once
+SKIP_RAW=1 Rscript R/00_run_all.R   # about 8-9 minutes
+```
+See [`iimb-baiconf-2026/README.md`](iimb-baiconf-2026/README.md) for the folder map and the mapping from manuscript Figures 1-5 and Tables 1-7 to output files. The raw force-time recordings are held by PhysioQinesis / Performance Lab under a non-disclosure agreement and are not in this repository.
 
 ## Aim
 Do countermovement jumps (CMJ) with similar conventional force-plate scores share the same force–time curve? How much of the curve-shape variation do those scores leave unexplained? Each trial's take-off phase (movement onset to take-off) and landing phase (touch-down to the lowest point of the centre of mass) are normalised to body weight. Each phase is time-normalised to 101 points, and the two are joined end to end with flight left out. The curves are analysed with PCA. There are three aims:
@@ -27,7 +37,7 @@ The landing-window definition is tested in a sensitivity analysis that ends the 
 | `data/cmj_trials_deidentified.csv` | 833 male football CMJ trials, before QC. Pseudonymous `athlete`, `test_code` (session) and `trial_code`; age (0.1 y), body mass, sampling rate, vendor metrics, QC helpers and 101-point force curves in N (`to_*` take-off, `ld_*` landing to touch-down + 1 s, `ldc_*` landing to lowest COM) |
 | `outputs/main_lowest_com/` | Main analysis: tables (CSV, including de-identified PC scores) and figures (PNG) |
 | `outputs/sensitivity_1s/` | The same outputs for the 1-s landing window |
-| `outputs/reproduction_check.csv` | 42 numbers from the delivered BAICONF analysis report next to this run's values |
+| `outputs/reproduction_check.csv` | 42 numbers from an earlier, independent run of the same analysis next to this run's values |
 | `outputs/reference_check.txt` | Crossref verification of every reference (`tools/verify_references.py`) |
 | `outputs/run_log.txt`, `outputs/sessionInfo.txt`, `packages.csv` | Console log, full `sessionInfo()` and package versions |
 | `validation/baiconf_report_values.csv` | Values printed in the BAICONF report, used by the reproduction check |
@@ -58,23 +68,14 @@ The changes are additions only:
 - landing duration as a correlation descriptor;
 - the variance decomposition (`R5_variance_decomposition.csv`).
 
-Adding landing duration changes one interpretation. The strongest correlate of PC1 is landing duration (r = −0.75), not peak landing force (r = 0.39), which was the strongest among the descriptors in the report.
+Adding landing duration changes one interpretation. The strongest correlate of PC1 is landing duration (r = −0.75), not peak landing force (r = 0.39), which was the strongest among the earlier descriptors.
 
-The submitted conference abstract came from an earlier analysis whose code could not be found, and its numbers differ from those reproduced here:
-
-| Quantity | Abstract | This analysis |
-|---|---|---|
-| Trials / athletes | 817 / 213 | 805 / 212 |
-| Variance explained by four PCs | 71% | 74.8% |
-| PC1 SD ratio in the jump-height band | ≈0.99 | 0.89 |
-| R² range | 5–17% | 2.7–13.1% |
-
-The manuscript reports only the numbers produced by this script.
+The manuscripts report only the numbers produced by this script.
 
 ## Data and privacy
 - Only de-identified data are included. Athletes, sessions and trials are pseudonymous codes. There are no names, team names, VALD profile, test or trial IDs, emails, dates of birth or test dates; age is given at test, rounded to 0.1 year.
 - The raw VALD export and the key from codes to athletes are private and are not in this repository.
-- Many athletes were minors. Ethics approval and consent details still need to be added to the manuscript (see the `\todo` placeholders).
+- Many athletes were minors. Ethics approval and consent details are being added to the manuscripts by the authors.
 - Before the first push, a PII scan checked every committed file against tokens from the private profile files (names, VALD IDs, emails, dates of birth) and against generic e-mail, UUID and date patterns. No matches were found.
 
 ## Licence

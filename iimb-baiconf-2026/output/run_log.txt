@@ -1,12 +1,4 @@
-
-================ R/01_build_test_list.R ================
-[01] 2213 football tests built from raw; reference 2213; identical rows 2213; mismatches 0
----- R/01_build_test_list.R finished in 0.4 s
-
-================ R/02_extract_trials_from_raw.R ================
-Wrote 833 trials from 215 athletes
-[02] vs original analysis file: same shape TRUE; max |diff| 0; NA pattern same TRUE; codes same TRUE
----- R/02_extract_trials_from_raw.R finished in 23.6 s
+[1] TRUE
 
 ================ R/03_analysis.R ================
 [1] Loaded 833 trials, 215 athletes, 333 sessions
@@ -29,6 +21,3 @@ Wrote 833 trials from 215 athletes
 5                 R4: complete metrics and age    811      212      327
 
 [12] Reproduction check: 42 of 42 report values reproduced exactly at printed precision
-
-Done in 9.4 s. R 4.5.3
----- R/03_analysis.R finished in 9.4 s

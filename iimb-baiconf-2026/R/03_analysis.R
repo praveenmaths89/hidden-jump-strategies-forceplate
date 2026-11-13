@@ -26,7 +26,7 @@ if (!file.exists("data/cmj_trials_deidentified.csv"))
 
 SEED      <- 2026   # one seed for every random step (CV folds, one-trial draw, bootstrap)
 G         <- 9.81   # gravitational acceleration (m s^-2)
-N_KEEP_PC <- 4      # retained principal components (fixed a priori, as in the abstract)
+N_KEEP_PC <- 4      # retained principal components (same in both landing definitions)
 K_SD      <- 2      # perturbation size for mean +/- k SD reconstructions
 BAND_LOW  <- 0.45   # matched band: trials between the 45th ...
 BAND_HIGH <- 0.55   # ... and 55th percentile of the matching metric
@@ -87,7 +87,7 @@ run_window <- function(win_name) {
   cat(sprintf("\n==== Analysis: %s (%s) ====\n", win_name, win$label))
 
   # ---------------------------------------------------------------------------
-  # 2. QUALITY CONTROL (rules fixed before any result was examined)
+  # 2. QUALITY CONTROL (R1-R4 for both landing definitions; R5 for the lowest-COM definition only)
   #   R1 valid VALD body mass; R2 quiet-stance mass within 5 % of body mass;
   #   R3 mean force during flight <= 50 N; R4 complete metrics and age;
   #   R5 landing end (lowest COM) found -- lowest-COM window only
@@ -305,9 +305,9 @@ run_window <- function(win_name) {
   pert$curve <- factor(pert$curve, levels = c("Mean", sprintf("+%d SD", K_SD), sprintf("\u2212%d SD", K_SD)))
   fig_pert <- ggplot(pert, aes(position, force, colour = curve, linetype = curve)) +
     geom_vline(xintercept = 101.5, colour = "grey60", linewidth = 0.3) +
-    geom_line(linewidth = 0.45) + facet_wrap(~ pc, ncol = 2) +
-    scale_colour_manual(values = c("black", unname(OKABE["vermillion"]), unname(OKABE["blue"]))) +
-    scale_linetype_manual(values = c("dashed", "solid", "solid")) +
+    geom_line(aes(linewidth = curve)) + scale_linewidth_manual(values = c(0.35, 0.6, 0.6), guide = "none") + facet_wrap(~ pc, ncol = 2) +
+    scale_colour_manual(values = c("grey45", "black", "black")) +          # greyscale (IMR: black-and-white exhibits)
+    scale_linetype_manual(values = c("solid", "solid", "22")) +
     scale_x_continuous(breaks = X_BREAKS, labels = X_LABELS) +
     labs(x = "Take-off phase (%)  |  Landing phase (%)", y = "Vertical force (\u00d7 body weight)",
          colour = NULL, linetype = NULL) + theme(legend.position = "bottom")
@@ -357,7 +357,7 @@ if (any(!ref$match)) print(ref[!ref$match, ])
 
 # -----------------------------------------------------------------------------
 # 13. MANUSCRIPT FIGURES (vector PDF + EPS at final print size; Arial 8 pt;
-#     Okabe-Ito colours). Figure 1 (pipeline) is TikZ in paper/floats.
+#     greyscale only, as IIMB Management Review requires). Figures 1-5.
 # -----------------------------------------------------------------------------
 # Figure 2: mean curve +/- 1 SD (A) and scree plot (B), main analysis
 fig2a <- ggplot(M$mc, aes(position, mean_bw)) +
@@ -374,18 +374,19 @@ fig2b <- ggplot(sc, aes(component)) + geom_col(aes(y = variance_pct), fill = "gr
   geom_vline(xintercept = N_KEEP_PC + 0.5, linetype = "dashed", linewidth = 0.3) +
   scale_x_discrete(labels = sub("PC", "", levels(sc$component))) +
   labs(tag = "B", x = "Principal component", y = "Variance explained (%)")
-save_fig(fig2a + fig2b + plot_layout(widths = c(2.2, 1)), "Fig2_mean_curve_scree", 174, 70)
+save_fig(fig2a + fig2b + plot_layout(widths = c(2.2, 1)), "Fig1_mean_curve_scree", 174, 70)
 
 # Figure 3: PC reconstructions, main analysis; Figure 6: same for 1-s window
-save_fig(M$fig_pert, "Fig3_pc_reconstructions_main", 174, 110)
-save_fig(S$fig_pert, "Fig6_pc_reconstructions_1s", 174, 110)
+save_fig(M$fig_pert, "Fig2_pc_reconstructions_main", 174, 110)
+save_fig(S$fig_pert, "Fig5_pc_reconstructions_1s", 174, 110)
 
 # Figure 4: matched band (A) curves of the jump-height band coloured by PC1; (B) SD ratios with 95% CI
 bc <- as.data.frame(M$curves[M$in_jh, ]); bc$trial <- seq_len(nrow(bc)); bc$PC1 <- M$dat$PC1[M$in_jh]
 bl <- bc %>% pivot_longer(-c(trial, PC1), values_to = "force") %>% group_by(trial) %>% mutate(position = row_number()) %>% ungroup()
-fig4a <- ggplot(bl, aes(position, force, group = trial, colour = PC1)) + geom_line(alpha = 0.7, linewidth = 0.25) +
+bl <- bl[order(bl$PC1), ]
+fig4a <- ggplot(bl, aes(position, force, group = trial, colour = PC1)) + geom_line(linewidth = 0.25) +
   geom_vline(xintercept = 101.5, linetype = "dashed", linewidth = 0.3) +
-  scale_colour_gradient2(low = OKABE["blue"], mid = "grey85", high = OKABE["vermillion"]) +
+  scale_colour_gradient(low = "grey88", high = "black") +
   scale_x_continuous(breaks = X_BREAKS, labels = X_LABELS) +
   labs(tag = "A", x = "Take-off phase (%)  |  Landing phase (%)", y = "Vertical force (\u00d7 body weight)", colour = "PC1 score")
 fr <- rbind(data.frame(component = M$ci$component, band = "Jump height", ratio = M$ci$jh_ratio, lo = M$ci$jh_ci_low, hi = M$ci$jh_ci_high),
@@ -395,10 +396,10 @@ fig4b <- ggplot(fr, aes(ratio, component, colour = band, shape = band)) +
   geom_vline(xintercept = 1, colour = "grey50", linewidth = 0.3) +
   geom_errorbar(aes(xmin = lo, xmax = hi), width = 0.2, orientation = "y", position = position_dodge(width = 0.5), linewidth = 0.4) +
   geom_point(position = position_dodge(width = 0.5), size = 1.6) +
-  scale_colour_manual(values = unname(OKABE[c("blue", "vermillion")])) +
+  scale_colour_manual(values = c("black", "grey50")) + scale_shape_manual(values = c(16, 17)) +
   labs(tag = "B", x = "SD ratio, band / full sample (95% CI)", y = NULL, colour = "Matched on", shape = "Matched on") +
   theme(legend.position = "bottom", legend.direction = "vertical")
-save_fig(fig4a + fig4b + plot_layout(widths = c(1.7, 1)), "Fig4_matched_band", 174, 80)
+save_fig(fig4a + fig4b + plot_layout(widths = c(1.7, 1)), "Fig3_matched_band", 174, 80)
 
 # Figure 5: variance explained by the conventional metrics under four evaluation schemes, both windows
 r2l <- do.call(rbind, lapply(list(M, S), function(R) rbind(
@@ -407,12 +408,59 @@ r2l <- do.call(rbind, lapply(list(M, S), function(R) rbind(
   data.frame(window = R$label, component = R$rb$component, scheme = "One trial per athlete", r2 = 100 * R$rb$r2_one_trial_per_athlete),
   data.frame(window = R$label, component = R$rb$component, scheme = "Athlete means", r2 = 100 * R$rb$r2_athlete_means))))
 r2l$scheme <- factor(r2l$scheme, levels = unique(r2l$scheme)); r2l$window <- factor(r2l$window, levels = c(M$label, S$label))
-fig5 <- ggplot(r2l, aes(component, r2, fill = scheme)) + geom_col(position = position_dodge(width = 0.8), width = 0.75) +
-  facet_wrap(~ window) + scale_fill_manual(values = unname(OKABE[c("black", "blue", "orange", "sky")])) +
+fig5 <- ggplot(r2l, aes(component, r2, fill = scheme)) + geom_col(position = position_dodge(width = 0.8), width = 0.75, colour = "black", linewidth = 0.2) +
+  facet_wrap(~ window) + scale_fill_manual(values = c("black", "grey40", "grey70", "white")) +
   scale_y_continuous(limits = c(0, 100), expand = expansion(mult = c(0, 0.02))) +
   labs(x = NULL, y = expression("Variance of component score explained, " * R^2 * " (%)"), fill = NULL) +
   theme(legend.position = "bottom") + guides(fill = guide_legend(nrow = 2))
-save_fig(fig5, "Fig5_variance_explained", 174, 80)
+save_fig(fig5, "Fig4_variance_explained", 174, 80)
+
+# -----------------------------------------------------------------------------
+# 13b. ADDITIONAL ANALYSES (journal review, 13 Nov 2026): variance share of the
+#      take-off block, bootstrap CIs and age adjustment of the variance
+#      decomposition, landing-descriptor regression, reliability of session
+#      means, dispersion by age group, data-quality counts
+# -----------------------------------------------------------------------------
+blk_share <- function(R) { v <- apply(R$curves, 2, var); c(takeoff = 100 * sum(v[1:101]) / sum(v), landing = 100 * sum(v[102:202]) / sum(v)) }
+SH_M <- blk_share(M); SH_S <- blk_share(S)
+vd_fit <- function(y, athlete, session, age = NULL) {
+  d <- data.frame(y = y, athlete = factor(athlete), session = factor(session))
+  f <- if (is.null(age)) y ~ 1 else { d$age <- age; y ~ age }
+  m <- tryCatch(lme(f, random = ~ 1 | athlete / session, data = d, method = "REML"), error = function(e) NULL)
+  if (is.null(m)) return(rep(NA_real_, 3))
+  vc <- suppressWarnings(as.numeric(VarCorr(m)[c(2, 4, 5), "Variance"])); 100 * vc / sum(vc)
+}
+pcs4 <- paste0("PC", 1:N_KEEP_PC)
+vd_age <- t(sapply(pcs4, function(pc) vd_fit(M$dat[[pc]], M$dat$athlete, M$dat$test_code, M$dat$age)))
+colnames(vd_age) <- c("between_athlete_pct", "between_session_pct", "within_session_pct")
+set.seed(SEED)
+rows_by_ath <- split(seq_len(nrow(M$dat)), M$dat$athlete)
+vd_boot <- array(NA_real_, c(N_BOOT, N_KEEP_PC, 3), dimnames = list(NULL, pcs4, colnames(vd_age)))
+for (b in 1:N_BOOT) {
+  pick <- sample(names(rows_by_ath), replace = TRUE)
+  rows <- unlist(rows_by_ath[pick]); rep_id <- rep(seq_along(pick), lengths(rows_by_ath[pick]))
+  bd <- M$dat[rows, ]; a_id <- paste0(bd$athlete, "_", rep_id); s_id <- paste0(bd$test_code, "_", rep_id)
+  for (pc in pcs4) vd_boot[b, pc, ] <- vd_fit(bd[[pc]], a_id, s_id)
+}
+q_ <- function(x, p) quantile(x, p, na.rm = TRUE)
+vd_ci <- data.frame(component = pcs4,
+  between_athlete_pct = M$vd$between_athlete_pct, ba_lo = apply(vd_boot[, , 1], 2, q_, 0.025), ba_hi = apply(vd_boot[, , 1], 2, q_, 0.975),
+  between_session_pct = M$vd$between_session_pct, bs_lo = apply(vd_boot[, , 2], 2, q_, 0.025), bs_hi = apply(vd_boot[, , 2], 2, q_, 0.975),
+  within_session_pct = M$vd$within_session_pct, ws_lo = apply(vd_boot[, , 3], 2, q_, 0.025), ws_hi = apply(vd_boot[, , 3], 2, q_, 0.975),
+  between_athlete_age_adj_pct = vd_age[, 1], between_session_age_adj_pct = vd_age[, 2], within_session_age_adj_pct = vd_age[, 3],
+  n_boot_ok = colSums(!is.na(vd_boot[, , 1])))
+write_tab(vd_ci, "output/main_lowest_com/tables", "R6_variance_decomposition_bootstrap_age")
+n_ath_multi <- sum(tapply(M$dat$test_code, M$dat$athlete, n_distinct) >= 2)
+land_r2 <- sapply(pcs4, function(pc) summary(lm(as.formula(paste(pc, "~ landing_to_lowcom_s + landing_peak_force_bw")), data = M$dat))$r.squared)
+write_tab(data.frame(component = pcs4, r2_landing_duration_and_rel_peak_landing_force = land_r2), "output/main_lowest_com/tables", "R7_landing_descriptor_regression")
+k_trials <- 3
+sb <- with(M$vd, (between_athlete_pct + between_session_pct) / (between_athlete_pct + between_session_pct + within_session_pct / k_trials))
+minor <- M$dat$age < 18
+sd_age <- data.frame(component = pcs4, sd_under18 = sapply(pcs4, function(pc) sd(M$dat[[pc]][minor])),
+                     sd_adult = sapply(pcs4, function(pc) sd(M$dat[[pc]][!minor])), n_trials_under18 = sum(minor), n_trials_adult = sum(!minor))
+write_tab(sd_age, "output/main_lowest_com/tables", "R8_score_sd_by_age_group")
+n_zero_cmd <- sum(M$dat$cm_depth_cm == 0 & M$dat$ecc_braking_impulse_ns == 0, na.rm = TRUE)
+n_low_brake <- sum(M$dat$ecc_braking_impulse_ns < 5 & M$dat$ecc_braking_impulse_ns > 0, na.rm = TRUE)
 
 # -----------------------------------------------------------------------------
 # 14. LATEX TABLES (paper/tables/*.tex), written from the result objects
@@ -457,32 +505,40 @@ write_tex(c("\\begin{tabular}{lrrlrl}", "\\toprule",
   "\\cmidrule(lr){3-4}\\cmidrule(l){5-6}", "Component & sample & SD & Ratio (95\\% CI) & SD & Ratio (95\\% CI) \\\\", "\\midrule",
   tex_rows(t4), "\\bottomrule", "\\end{tabular}"), "tab4_bands")
 
-# Table 5: variance explained under four evaluation schemes + variance decomposition (main window)
+# Table 5: variance explained under four evaluation schemes (main window)
 p1 <- function(x) fmt(100 * x, 1)
 t5 <- data.frame(M$r2$component, p1(M$r2$r_squared), p1(M$r2$adj_r_squared), neg(p1(M$cv$cv_r_squared)),
-  p1(M$rb$r2_one_trial_per_athlete), p1(M$rb$r2_athlete_means),
-  fmt(M$vd$between_athlete_pct, 1), fmt(M$vd$between_session_pct, 1), fmt(M$vd$within_session_pct, 1))
-write_tex(c("\\begin{tabular}{lrrrrrrrr}", "\\toprule",
-  " & \\multicolumn{5}{c}{$R^2$ of component score on metrics, age and body mass (\\%)} & \\multicolumn{3}{c}{Variance of component score (\\%)} \\\\",
-  "\\cmidrule(lr){2-6}\\cmidrule(l){7-9}",
-  "Component & In-sample & Adjusted & Athlete CV & One trial & Athlete & Between & Between & Within \\\\",
-  " & & & & per athlete & means & athletes & sessions & session \\\\", "\\midrule",
+  p1(M$rb$r2_one_trial_per_athlete), p1(M$rb$r2_athlete_means))
+write_tex(c("\\begin{tabular}{lrrrrr}", "\\toprule",
+  "Component & In-sample & Adjusted & Athlete CV & One trial per athlete & Athlete means \\\\", "\\midrule",
   tex_rows(t5), "\\bottomrule", "\\end{tabular}"), "tab5_r2")
 
-# Table 6: main analysis versus 1-s landing window
+# Table 6: variance decomposition with athlete-level bootstrap 95% CIs and age adjustment (main window)
+ci1 <- function(e, l, h) paste0(fmt(e, 1), " (", fmt(l, 0), "--", fmt(h, 0), ")")
+t6v <- data.frame(vd_ci$component, ci1(vd_ci$between_athlete_pct, vd_ci$ba_lo, vd_ci$ba_hi),
+  ci1(vd_ci$between_session_pct, vd_ci$bs_lo, vd_ci$bs_hi), ci1(vd_ci$within_session_pct, vd_ci$ws_lo, vd_ci$ws_hi),
+  fmt(vd_ci$between_athlete_age_adj_pct, 1))
+write_tex(c("\\begin{tabular}{lllll}", "\\toprule",
+  "Component & Between athletes & Between sessions & Within session & Between athletes, age-adjusted \\\\", "\\midrule",
+  tex_rows(t6v), "\\bottomrule", "\\end{tabular}"), "tab6_variance")
+
+# Table 7: main analysis versus 1-s landing window
 tw <- function(R) c(paste0(nrow(R$dat), " / ", n_distinct(R$dat$athlete)),
   paste(fmt(R$var$variance_pct[1:4], 1), collapse = ", "), fmt(R$var$cumulative_pct[4], 1),
   paste(fmt(R$phase$landing_share_pct, 1), collapse = ", "),
-  ciw(R$ci$jh_ratio[1], R$ci$jh_ci_low[1], R$ci$jh_ci_high[1]), fmt(R$band$ratio_jump_height[5]),
+  ciw(R$ci$jh_ratio[1], R$ci$jh_ci_low[1], R$ci$jh_ci_high[1]),
+  ciw(R$ci$rpf_ratio[3], R$ci$rpf_ci_low[3], R$ci$rpf_ci_high[3]), fmt(R$band$ratio_jump_height[5]),
   paste(fmt(100 * R$r2$r_squared, 1), collapse = ", "), paste(neg(fmt(100 * R$cv$cv_r_squared, 1)), collapse = ", "),
   paste(fmt(R$vd$between_athlete_pct, 1), collapse = ", "),
   neg(fmt(cr(R, "Landing peak force (x BW)")[[1]])), neg(fmt(cr(R, "Contraction time (s)")[[3]])))
-t6 <- data.frame(c("Trials / athletes after QC", "Variance explained, PC1--PC4 (\\%)", "Cumulative, PC1--PC4 (\\%)",
-  "Landing share of loading, PC1--PC4 (\\%)", "PC1 SD ratio, jump-height band (95\\% CI)", "Whole-curve SD ratio, jump-height band",
+t7 <- data.frame(c("Trials / athletes after QC", "Variance explained, PC1--PC4 (\\%)", "Cumulative, PC1--PC4 (\\%)",
+  "Landing share of loading, PC1--PC4 (\\%)", "PC1 SD ratio, jump-height band (95\\% CI)",
+  "PC3 SD ratio, relative-peak-force band (95\\% CI)", "Whole-curve SD ratio, jump-height band",
   "In-sample $R^2$, PC1--PC4 (\\%)", "Athlete-CV $R^2$, PC1--PC4 (\\%)", "Between-athlete variance, PC1--PC4 (\\%)",
   "$r$(PC1, landing peak force)", "$r$(PC3, contraction time)"), tw(M), tw(S))
 write_tex(c("\\begin{tabular}{lll}", "\\toprule", "Quantity & Main: landing to lowest COM & Sensitivity: 1-s landing \\\\", "\\midrule",
-  tex_rows(t6), "\\bottomrule", "\\end{tabular}"), "tab6_windows")
+  tex_rows(t7), "\\bottomrule", "\\end{tabular}"), "tab7_windows")
+unlink(file.path(DIR_PAPER_TAB, "tab6_windows.tex"))
 
 # -----------------------------------------------------------------------------
 # 15. IN-TEXT NUMBERS as LaTeX macros (paper/generated/numbers.tex)
@@ -554,6 +610,19 @@ m("jhRatioSPCA", fmt(S$ci$jh_ratio[1])); m("jhLoSPCA", fmt(S$ci$jh_ci_low[1])); 
 m("bwPCARange", rng(M$bw$PC1_sd_ratio, 2)); m("bwAllRange", rng(as.matrix(M$bw[, paste0("PC", 1:4, "_sd_ratio")]), 2))
 m("betweenRange", rng(M$vd$between_athlete_pct)); m("withinRange", rng(M$vd$within_session_pct))
 m("sessRange", rng(M$vd$between_session_pct))
+m("nFsLowAnalysed", sum(M$dat$native_fs == 500, na.rm = TRUE))
+m("varShareTakeoff", fmt(SH_M["takeoff"], 1)); m("varShareLanding", fmt(SH_M["landing"], 1))
+m("varShareTakeoffS", fmt(SH_S["takeoff"], 1))
+m("rpfRatioSPCC", fmt(S$ci$rpf_ratio[3])); m("rpfLoSPCC", fmt(S$ci$rpf_ci_low[3])); m("rpfHiSPCC", fmt(S$ci$rpf_ci_high[3]))
+m("nAthMultiSess", n_ath_multi)
+m("baCIUpperRange", rng(vd_ci$ba_hi, 0)); m("baLoPCA", fmt(vd_ci$ba_lo[1], 0)); m("baHiPCA", fmt(vd_ci$ba_hi[1], 0))
+m("baCIMaxUpper", fmt(max(vd_ci$ba_hi), 0))
+m("baAgeAdjRange", rng(vd_ci$between_athlete_age_adj_pct)); m("baAgeMaxChange", fmt(max(abs(vd_ci$between_athlete_age_adj_pct - vd_ci$between_athlete_pct)), 1))
+m("baAgePCA", fmt(vd_ci$between_athlete_age_adj_pct[1], 1))
+m("landRtwoPCA", fmt(100 * land_r2[1], 1)); m("landRtwoOtherRange", rng(100 * land_r2[2:4]))
+m("sbTrials", k_trials); m("sbPCA", fmt(sb[1], 2)); m("sbRange", rng(sb, 2))
+m("sdMinorPCA", fmt(sd_age$sd_under18[1], 1)); m("sdAdultPCA", fmt(sd_age$sd_adult[1], 1))
+m("nTrialsMinor", sum(minor)); m("nZeroCmd", n_zero_cmd); m("nLowBrake", n_low_brake)
 m("nBoot", format(N_BOOT, big.mark = ",")); m("seedValue", SEED)
 m("nRepro", sum(ref$match)); m("nReproTotal", nrow(ref))
 writeLines(c("% Generated by R/run_all.R -- do not edit by hand", mac), file.path(DIR_GEN, "numbers.tex"))

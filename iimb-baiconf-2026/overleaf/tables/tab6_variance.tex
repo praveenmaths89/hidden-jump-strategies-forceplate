@@ -1,0 +1,22 @@
+% Generated from package/output/paper_tables_latex/tab6_variance.tex (R pipeline); only layout changed.
+\begin{table}[H]
+\centering
+\begin{threeparttable}
+\caption{Decomposition of component-score variance between athletes, sessions and trials (main analysis, \% of total variance).}
+\label{tab:vd}
+\small
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lllll@{}}
+\toprule
+Component & \makecell[l]{Between\\athletes} & \makecell[l]{Between\\sessions} & \makecell[l]{Within\\session} & \makecell[l]{Between athletes,\\age-adjusted} \\
+\midrule
+PC1 & 29.6 (13--47) & 34.9 (16--53) & 35.5 (26--46) & 28.2 \\
+PC2 & 21.4 (4--37) & 17.0 (3--36) & 61.6 (50--73) & 20.6 \\
+PC3 & 22.9 (12--31) & 2.3 (0--14) & 74.8 (63--85) & 15.9 \\
+PC4 & 10.0 (0--23) & 20.3 (9--32) & 69.6 (59--79) & 7.1 \\
+\bottomrule
+\end{tabular*}
+\begin{tablenotes}[flushleft]\footnotesize
+\item \textit{Note.} Three-level random-intercept model (athlete, session within athlete, trial within session) fitted by restricted maximum likelihood. Values in parentheses are 95\% CIs from \nBoot{} athlete-level bootstrap resamples. Only \nAthMultiSess{} of the \nAth{} athletes contributed more than one session, so the between-session share is imprecise. Age-adjusted = the same model with age at test as a fixed effect.
+\end{tablenotes}
+\end{threeparttable}
+\end{table}

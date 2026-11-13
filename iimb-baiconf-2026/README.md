@@ -15,43 +15,59 @@ Package built 13 November 2026.
 ```bash
 cd <this folder>
 Rscript install_packages.R      # once
-Rscript R/00_run_all.R          # about 35 s: raw/ -> data/ -> output/
-SKIP_RAW=1 Rscript R/00_run_all.R   # optional: start from the de-identified file (no raw data needed)
+SKIP_RAW=1 Rscript R/00_run_all.R   # about 8-9 min (2,000 bootstrap refits): de-identified data/ -> output/
+Rscript R/00_run_all.R          # only with the raw export in raw/: raw/ -> data/ -> output/
 ```
-All paths are relative to this folder. The console output is saved to `output/run_log.txt`.
+All paths are relative to this folder. The console output is saved to `output/run_log.txt`. From the de-identified file the run ends with "42 of 42 report values reproduced exactly".
 
-## What the run checks (13 Nov 2026 result)
+## What the run checks (13 Nov 2026 result; steps 01-02 need the raw export)
 | Check | Result |
 |---|---|
 | Step 01: football test list rebuilt from raw (`tests.csv`, `profiles.json`, sport map) vs. the table the original Python pipeline wrote | 2,213 of 2,213 rows identical |
 | Step 02: trial file rebuilt from the raw recordings vs. the file the paper was analysed from | same shape, max absolute difference 0, identical codes and missing-value pattern |
-| Step 03: 42 values printed in the BAICONF analysis report (`validation/baiconf_report_values.csv`) | 42 of 42 reproduced exactly (`output/reproduction_check.csv`) |
-| Step 03 vs. the paper repository (`hidden-jump-strategies-forceplate`) | in-text numbers (`numbers.tex`) and all CSV tables identical |
+| Step 03: 42 values from an earlier, independent run of the same analysis (`validation/baiconf_report_values.csv`) | 42 of 42 reproduced exactly (`output/reproduction_check.csv`; SKIP_RAW=1 run of 13 Nov 2026) |
+| Repeat run | a second SKIP_RAW=1 run gave identical `numbers.tex` and LaTeX tables |
 
-Known differences (documented, not fixed by changing numbers):
-- The **submitted BAICONF abstract** (`paper/original/BAICONF2026_submitted_abstract_BAI2575.docx`) came from an earlier analysis whose code was not found: 817 trials / 213 athletes, 71% variance, 5–17% R². This pipeline gives 805 / 212, 74.8%, 2.7–13.1%. The manuscript reports only this pipeline's numbers.
-- **Bug fixed in this package:** the original LaTeX Table 1 printed `5%` unescaped, so LaTeX dropped the rest of row R2 (813 trials) in the original PDFs. `R/03_analysis.R` line 427 now escapes it; no numbers change.
-- **Figure numbering:** the pipeline diagram (old Figure 1) was removed from the IIMB manuscript. The R script still writes the files under their original names `Fig2_`–`Fig6_`; in the IIMB manuscript and Overleaf project they are Figures 1–5 (Fig2→Fig. 1, Fig3→Fig. 2, Fig4→Fig. 3, Fig5→Fig. 4, Fig6→Fig. 5).
-- `overleaf/` (in the zip package: `paper/iimb_formatted/overleaf/`) is the Overleaf-ready LaTeX source (pdfLaTeX + Biber) of the manuscript, title page, highlights and exhibits.
+Notes:
+- **Bug fixed in this package:** the original LaTeX Table 1 printed `5%` unescaped, so LaTeX dropped the rest of row R2. `R/03_analysis.R` now escapes it; no numbers change.
+- **Additions for the IIMB version (13 Nov 2026):** section 13b of `R/03_analysis.R` adds bootstrap CIs and an age-adjusted fit for the variance decomposition (Table 6), block variance shares, landing-descriptor R², Spearman-Brown reliability, the PC3 check under relative-peak-force matching (Table 7) and counts used in the text. Figures are greyscale and named `Fig1_`-`Fig5_` as in the manuscript.
+- `overleaf/` is the Overleaf-ready LaTeX source (pdfLaTeX + Biber) of the manuscript, title page, highlights and exhibits. `./check_format.sh --build` compiles it and checks it against the IIMB guidelines (54 checks).
+
+## Manuscript exhibits and the files that produce them
+| Manuscript | File written by `R/03_analysis.R` |
+|---|---|
+| Fig. 1 Mean curve and scree plot | `output/paper_figures/Fig1_mean_curve_scree.pdf` |
+| Fig. 2 Reconstructions of PC1-PC4 (main analysis) | `output/paper_figures/Fig2_pc_reconstructions_main.pdf` |
+| Fig. 3 Jump-height matched band and SD ratios | `output/paper_figures/Fig3_matched_band.pdf` |
+| Fig. 4 Variance explained by the vendor metrics, age and body mass | `output/paper_figures/Fig4_variance_explained.pdf` |
+| Fig. 5 Reconstructions under the 1-s landing window | `output/paper_figures/Fig5_pc_reconstructions_1s.pdf` |
+| Tables 1-7 | `output/paper_tables_latex/tab1_qc.tex`, `tab2_descriptives.tex`, `tab3_components.tex`, `tab4_bands.tex`, `tab5_r2.tex`, `tab6_variance.tex`, `tab7_windows.tex` |
+| Every number in the text | `output/paper_numbers/numbers.tex` (copied unchanged to `overleaf/numbers.tex`) |
+
+EPS copies of the figures are in `output/paper_figures_eps/`. The Overleaf project lays the R tables out with `paper/build_scripts/mktab.py`; the numbers are not edited.
+
+## Data and code availability
+The R code and the de-identified trial-level file `data/cmj_trials_deidentified.csv` (833 trials; pseudonymous athlete, session and trial codes; age to 0.1 year; no names, dates or vendor identifiers) are in this folder. The raw force-time recordings, athlete profiles and the pseudonym key are held by PhysioQinesis / Performance Lab under a non-disclosure agreement and are not included. The manuscript's data statement says the same.
 
 ## Folder map
 | Path | Contents |
 |---|---|
-| `raw/vald/` | **Unmodified** VALD export used by the paper: `<testId>.parquet` (dual-plate force, 1000/500 Hz) and `<testId>_trials.json` (vendor trial results) for the 333 male football CMJ tests; `tests.csv` (all tests, body mass); `profiles.json` (names, DOB, sex – identifiable); `groups.json` |
-| `raw/private_keys/` | `codebook.json` (VALD id → pseudonymous code) and `03_athlete_sports_gender_mapping.csv` (sport and sex by athlete, from the Azure Databricks backup; contains names) |
+| `raw/vald/` | Not included (NDA). To rerun steps 01-02, place the unmodified VALD export here: `<testId>.parquet` force recordings (1,000 or 500 Hz), `<testId>_trials.json`, `tests.csv`, `profiles.json`, `groups.json` |
+| `raw/private_keys/` | Not included (identifiable). Pseudonym codebook and sport/sex mapping used by step 01 |
 | `R/00_run_all.R` | Runner: steps 01–03 in order, writes `output/run_log.txt` |
 | `R/01_build_test_list.R` | R port of the Python `athlete_table()` + de-identification: football tests with sex and age (0.1 y) → `data/interim/tests_coverage.csv` |
 | `R/02_extract_trials_from_raw.R` | The paper's extraction script (paths changed only): raw recordings → `data/cmj_trials_deidentified.csv` (833 trials, 101-point take-off, 1-s landing and lowest-COM landing curves, vendor metrics, QC helpers) |
 | `R/03_analysis.R` | The paper's single analysis script (`run_all.R`; output folders renamed; % fix): QC, body-weight and phase normalisation, PCA, interpretation, matched bands, regression, athlete-grouped CV, bootstrap, variance decomposition, figures, LaTeX tables, in-text numbers, reproduction check |
-| `data/` | De-identified files written by steps 01–02 |
+| `data/` | De-identified files: `cmj_trials_deidentified.csv` (input for `SKIP_RAW=1`) and `interim/` (written by steps 01–02) |
 | `output/main_lowest_com/`, `output/sensitivity_1s/` | Tables (CSV), figures (PNG), intermediate curves for the main and 1-s landing analyses |
-| `output/paper_figures/`, `output/paper_figures_eps/` | Manuscript Figures 2–6 (PDF, EPS) |
-| `output/paper_tables_latex/`, `output/paper_numbers/numbers.tex` | Manuscript Tables 1–6 and every in-text number |
+| `output/paper_figures/`, `output/paper_figures_eps/` | Manuscript Figures 1–5 (PDF, EPS, greyscale) |
+| `output/paper_tables_latex/`, `output/paper_numbers/numbers.tex` | Manuscript Tables 1–7 and every in-text number |
 | `output/reproduction_check.csv`, `run_log.txt`, `sessionInfo.txt` | Checks, console log, software versions |
-| `validation/` | Reference files the run compares against (original de-identified trial file, Python coverage table, BAICONF report values) |
+| `validation/` | Reference files the run compares against (original de-identified trial file, Python coverage table, reference values from the earlier independent run) |
+| `overleaf/`, `check_format.sh` | Overleaf project of the IIMB submission and its format checker |
 | `paper/iimb_formatted/` | IIMB MR submission files: anonymised manuscript (DOCX, PDF), separate title page, exhibits file (tables + figures), highlights |
-| `paper/original/` | Submitted BAICONF abstract, the BAICONF analysis report (PDF), and the full LaTeX source + PDFs of the journal manuscript the IIMB version was built from |
-| `paper/build_scripts/` | Scripts that convert the LaTeX source + `output/` into the IIMB files (pandoc 3.14, APA 7 CSL, python-docx, tectonic) |
+| `paper/original/` | Conference submission documents, for the authors' records (not part of the IIMB submission). The zip package also holds the LaTeX source of the authors' earlier manuscript draft; in the Git repository that draft is the top-level `paper/` folder |
+| `paper/build_scripts/` | Scripts that convert the LaTeX source + `output/` into the IIMB files (`mktab.py` lays out the R tables; `flatten.py` + `build_docx.py` + `docxlib.py` make the DOCX files with pandoc 3.14, APA 7 CSL and python-docx; `overlap.py` is the n-gram overlap check; PDFs via pdfLaTeX/latexmk + Biber in TeX Live/TinyTeX; paths inside the scripts are absolute and must be edited) |
 
 ## Software
 R 4.5.3 (conda-forge build) with dplyr 1.2.1, tidyr 1.3.2, ggplot2 4.0.3, patchwork 1.3.2, nlme 3.1.170, arrow 25.0.1, jsonlite 2.0.0 (`packages.csv`; full `sessionInfo()` in `output/sessionInfo.txt`). Figures use Arial via Cairo; without Arial, R substitutes a similar font (numbers are unaffected). Random steps (CV folds, one-trial draw, 2,000 athlete bootstraps) use `set.seed(2026)`.

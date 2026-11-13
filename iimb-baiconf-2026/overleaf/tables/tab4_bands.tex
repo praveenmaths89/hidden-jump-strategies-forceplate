@@ -1,11 +1,10 @@
 % Generated from package/output/paper_tables_latex/tab4_bands.tex (R pipeline); only layout changed.
-\begin{table}[tbp]
+\begin{table}[H]
 \centering
 \begin{threeparttable}
 \caption{Dispersion of component scores in the full sample and among trials matched on jump height or on relative concentric peak force (main analysis).}
 \label{tab:band}
-\footnotesize
-\setlength{\tabcolsep}{3pt}
+\footnotesize\setlength{\tabcolsep}{3pt}
 \begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}lrrlrl@{}}
 \toprule
  & & \multicolumn{2}{c}{Jump-height band} & \multicolumn{2}{c}{Relative peak-force band} \\
@@ -20,7 +19,7 @@ Whole curve$^a$ & 11.92 & 11.99 & 1.01 & 11.95 & 1.00 \\
 \bottomrule
 \end{tabular*}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Note.} Matched bands comprise trials between the 45th and 55th percentiles of jump height (\jhBandLo--\jhBandHi\,cm; \jhBandN{} trials, \jhBandAth{} athletes) or of concentric peak force relative to body weight (\rpfBandLo--\rpfBandHi\,BW; \rpfBandN{} trials, \rpfBandAth{} athletes). Ratio = SD in the band divided by SD in the full sample; 95\% CI from \nBoot{} athlete-level bootstrap resamples. Component SDs depend on the number of grid points and are comparable only within this table; ratios are scale-free. $^a$Square root of the summed point-wise variance of the 202-point curve.
+\item \textit{Note.} Matched bands comprise trials between the 45th and 55th percentiles of jump height (\jhBandLo--\jhBandHi\,cm; \jhBandN{} trials, \jhBandAth{} athletes) or of concentric peak force relative to body weight (\rpfBandLo--\rpfBandHi\,BW; \rpfBandN{} trials, \rpfBandAth{} athletes). Ratio = SD in the band divided by SD in the full sample; 95\% CI from \nBoot{} athlete-level bootstrap resamples, conditional on the estimated components. Component SDs depend on the number of grid points and are comparable only within this table; ratios are scale-free. $^a$Square root of the summed point-wise variance of the 202-point curve.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}
