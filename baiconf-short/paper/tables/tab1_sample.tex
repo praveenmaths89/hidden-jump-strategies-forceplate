@@ -4,36 +4,30 @@
 \begin{threeparttable}
 \caption{Sample characteristics}
 \label{tab:desc}
-\footnotesize\setlength{\tabcolsep}{3pt}
-\begin{tabular}{@{}l S[table-format=4.2] S[table-format=3.2] S[table-format=4.2] S[table-format=4.2] S[table-format=4.2] S[table-format=4.2] S[table-format=4.2]@{}}
+\footnotesize
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l S[table-format=4.2] S[table-format=3.2] S[table-format=4.2] S[table-format=3.2] S[table-format=4.2]@{}}
 \toprule
- & & & & \multicolumn{2}{c}{Quartiles} & \multicolumn{2}{c}{Range} \\
-\cmidrule(lr){5-6}\cmidrule(l){7-8}
-Variable & {Mean} & {SD} & {Median} & {Q1} & {Q3} & {Min} & {Max} \\
+Variable & {\textit{M}} & {\textit{SD}} & {\textit{Mdn}} & {Min} & {Max} \\
 \midrule
-\multicolumn{8}{@{}l}{\textit{Athletes ($n$ = 212)}} \\
-\quad Age at first test (years) & 16.0 & 5.9 & 14.1 & 12.0 & 16.8 & 8.8 & 37.9 \\
-\quad Body mass at first test (kg) & 53.3 & 15.9 & 51.7 & 40.9 & 64.0 & 25.0 & 96.0 \\
-\quad Trials per athlete & 3.8 & 2.3 & 3.0 & 2.0 & 5.0 & 1.0 & 16.0 \\
-\quad Sessions per athlete & 1.5 & 0.8 & 1.0 & 1.0 & 2.0 & 1.0 & 6.0 \\
+\multicolumn{6}{@{}l}{\textit{Panel A. Athletes (\textit{n} = 212)}} \\
+\quad Age at first test (years) & 16.0 & 5.9 & 14.1 & 8.8 & 37.9 \\
+\quad Body mass at first test (kg) & 53.3 & 15.9 & 51.7 & 25.0 & 96.0 \\
+\quad Trials per athlete & 3.8 & 2.3 & 3.0 & 1.0 & 16.0 \\
+\quad Sessions per athlete & 1.5 & 0.8 & 1.0 & 1.0 & 6.0 \\
 \addlinespace
-\multicolumn{8}{@{}l}{\textit{Sessions ($n$ = 327)}} \\
-\quad Trials per session & 2.5 & 0.8 & 2.0 & 2.0 & 3.0 & 1.0 & 7.0 \\
-\addlinespace
-\multicolumn{8}{@{}l}{\textit{Trials ($n$ = 805)}} \\
-\quad Jump height (cm) & 28.2 & 8.4 & 27.0 & 21.6 & 34.7 & 8.5 & 51.5 \\
-\quad Concentric peak force (BW) & 2.35 & 0.38 & 2.29 & 2.11 & 2.51 & 1.65 & 4.70 \\
-\quad Eccentric braking impulse (N\,s) & 27.8 & 15.4 & 24.6 & 16.6 & 35.7 & 0.0 & 95.2 \\
-\quad Concentric impulse, first 100\,ms (N\,s) & 62.2 & 26.7 & 58.7 & 41.8 & 79.1 & 1.5 & 187.9 \\
-\quad Peak landing force (BW) & 5.39 & 1.97 & 4.97 & 3.88 & 6.67 & 2.19 & 14.88 \\
-\quad Take-off duration (s) & 0.78 & 0.19 & 0.77 & 0.66 & 0.90 & 0.31 & 1.48 \\
-\quad Landing duration (s)$^{a}$ & 0.25 & 0.11 & 0.24 & 0.15 & 0.31 & 0.07 & 0.93 \\
-\quad Native samples, take-off$^{b}$ & 755 & 212 & 762 & 627 & 889 & 180 & 1484 \\
-\quad Native samples, landing$^{b}$ & 238 & 116 & 223 & 144 & 310 & 41 & 928 \\
+\multicolumn{6}{@{}l}{\textit{Panel B. Trials (\textit{n} = 805)}} \\
+\quad Jump height (cm) & 28.2 & 8.4 & 27.0 & 8.5 & 51.5 \\
+\quad Concentric peak force (BW) & 2.35 & 0.38 & 2.29 & 1.65 & 4.70 \\
+\quad Peak landing force (BW) & 5.39 & 1.97 & 4.97 & 2.19 & 14.88 \\
+\quad Eccentric braking impulse (N\,s) & 27.8 & 15.4 & 24.6 & 0.0 & 95.2 \\
+\quad Concentric impulse, first 100\,ms (N\,s) & 62.2 & 26.7 & 58.7 & 1.5 & 187.9 \\
+\quad Take-off duration (ms)$^{a}$ & 782 & 190 & 774 & 306 & 1484 \\
+\quad Landing duration (ms)$^{b}$ & 247 & 114 & 235 & 70 & 928 \\
 \bottomrule
-\end{tabular}
+\end{tabular*}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Note.} BW = multiples of body weight. Take-off runs from movement onset to take-off (vendor contraction time). 59 trials were recorded at 500\,Hz and 746 at 1000\,Hz. $^{a}$Touch-down to the lowest point of the centre of mass. $^{b}$Phase duration multiplied by the sampling rate; each phase is resampled to 101 nodes.
+\item \textit{Note.} Values describe the analysed sample after quality control. Decimal places are fixed within each variable. \textit{M} = mean; \textit{Mdn} = median; BW = multiples of body weight. Trials were recorded at 1000\,Hz (746) or 500\,Hz (59).
+\item $^{a}$Movement onset to take-off. $^{b}$Touch-down to the lowest position of the centre of mass.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

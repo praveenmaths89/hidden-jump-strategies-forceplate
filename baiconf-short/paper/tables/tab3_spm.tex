@@ -2,22 +2,34 @@
 \begin{table}[!htbp]
 \centering
 \begin{threeparttable}
-\caption{Pointwise group comparisons of athlete-mean curves with family-wise error control}
+\caption{Group differences in athlete-mean force curves}
 \label{tab:spm}
-\footnotesize\setlength{\tabcolsep}{3pt}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}p{2.6cm} l >{\raggedright\arraybackslash}X >{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}p{2.1cm} >{\raggedright\arraybackslash}X@{}}
+\footnotesize
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}l l c S[table-format=2.0] S[table-format=1.2] l S[table-format=1.2] l@{}}
 \toprule
-Contrast (athletes) & Phase & Significant region, \% ($p$) & Difference at peak, BW [95\% CI] & Hedges' $g$ [95\% CI] & Region after adjustment, \% ($p$)$^{a}$ \\
+ & & & & \multicolumn{2}{c}{Difference (BW)} & \multicolumn{2}{c}{Hedges' \textit{g}} \\
+\cmidrule(lr){5-6}\cmidrule(l){7-8}
+Phase & {Region (\%)} & {\textit{p}} & {Peak (\%)} & {Value} & {95\% CI} & {Value} & {95\% CI} \\
 \midrule
-Top vs bottom jump-height tertile (71 vs 71) & Take-off & 81--99 ($<$0.001) & 0.55 [0.48, 0.61] at 93\% & 2.63 [2.31, 2.94] & 12--32 (0.021); 66--99 ($<$0.001) \\
- & Landing & 2--56 (0.003) & 0.75 [0.45, 1.04] at 15\% & 0.83 [0.50, 1.15] & 19--40 (0.043) \\
+\multicolumn{8}{@{}l}{\textit{Panel A. Top vs bottom tertile of jump height (71 vs 71 athletes)}} \\
+\quad Take-off & {81--99} & {$<$.001} & 93 & 0.55 & {[0.48, 0.61]} & 2.63 & {[2.31, 2.94]} \\
+\quad Landing & {2--56} & .003 & 15 & 0.75 & {[0.45, 1.04]} & 0.83 & {[0.50, 1.15]} \\
+\multicolumn{8}{@{}l}{\hspace{0.5em}\textit{Adjusted for age and body mass}$^{a}$} \\
+\quad Take-off & {12--32} & .021 & {--} & {--} & {--} & {--} & {--} \\
+\quad  & {66--99} & {$<$.001} & {--} & {--} & {--} & {--} & {--} \\
+\quad Landing & {19--40} & .043 & {--} & {--} & {--} & {--} & {--} \\
 \addlinespace
-18 and over vs under 18 (48 vs 164) & Take-off & 87--99 ($<$0.001) & 0.47 [0.36, 0.56] at 96\% & 1.60 [1.25, 1.92] & none (min $p$ = 0.12) \\
- & Landing & none (min $p$ = 0.07) & {--} & {--} & none (min $p$ = 0.23) \\
+\multicolumn{8}{@{}l}{\textit{Panel B. Aged 18 or over vs under 18 (48 vs 164 athletes)}} \\
+\quad Take-off & {87--99} & {$<$.001} & 96 & 0.47 & {[0.36, 0.56]} & 1.60 & {[1.25, 1.92]} \\
+\quad Landing & {none} & .069$^{c}$ & {--} & {--} & {--} & {--} & {--} \\
+\multicolumn{8}{@{}l}{\hspace{0.5em}\textit{Adjusted for body mass and jump height}$^{a}$} \\
+\quad Take-off & {none} & .123$^{c}$ & {--} & {--} & {--} & {--} & {--} \\
+\quad Landing & {none} & .226$^{c}$ & {--} & {--} & {--} & {--} & {--} \\
 \bottomrule
-\end{tabularx}
+\end{tabular*}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Note.} One mean curve per athlete. Clusters of adjacent nodes with $|t|$ above the two-sided 5\% threshold were tested against the permutation distribution of the largest cluster mass over the whole phase (5000 permutations of athlete labels), which controls the family-wise error rate over the 101 nodes. Differences are first group minus second, at the node of largest $|t|$, with 95\% intervals from 2000 bootstrap resamples of athletes within groups. Bonferroni threshold across the four primary tests: $p$ < 0.0125. $^{a}$Tertile contrast adjusted for athlete-mean age and body mass; age contrast adjusted for body mass and jump height (Freedman--Lane permutation).
+\item \textit{Note.} One mean curve per athlete. Region = cluster of adjacent nodes (\% of the phase) where the groups differed; \textit{p} from 5000 permutations of the largest cluster mass, controlling the family-wise error rate over the phase$^{b}$. Peak = node of the largest |\textit{t}| in the region, where the difference (first group minus second; BW = multiples of body weight) and Hedges' \textit{g} are given with 95\% confidence intervals (CIs) from 2000 bootstrap resamples of athletes within groups. Bonferroni threshold for the four primary tests: \textit{p} < .0125.
+\item $^{a}$Freedman--Lane permutation of residuals. $^{b}$Nodes with $|t|$ above the two-sided 5\% threshold form clusters. $^{c}$No significant region; smallest cluster \textit{p} shown.
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

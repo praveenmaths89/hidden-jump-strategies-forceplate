@@ -2,35 +2,41 @@
 \begin{table}[!htbp]
 \centering
 \begin{threeparttable}
-\caption{Curve profiles: description, validation and stability within athletes}
+\caption{Take-off and landing curve profiles: characteristics, evidence for distinct groups and stability}
 \label{tab:profiles}
-\footnotesize\setlength{\tabcolsep}{4pt}
-\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}X ll@{}}
+\footnotesize
+\begin{tabular*}{\linewidth}{@{\extracolsep{\fill}}>{\raggedright\arraybackslash}p{6.3cm} S[table-format=3.1] S[table-format=3.1] S[table-format=3.1] S[table-format=3.1]@{}}
 \toprule
- & Take-off & Landing \\
+ & \multicolumn{2}{c}{Take-off profile} & \multicolumn{2}{c}{Landing profile} \\
+\cmidrule(lr){2-3}\cmidrule(l){4-5}
+ & {1} & {2} & {1} & {2} \\
 \midrule
-\multicolumn{3}{@{}l}{\textit{Description}} \\
-\quad Profile 1 / profile 2 (trials) & 329 / 476 & 560 / 245 \\
-\quad Mean jump height (cm) & 29.6 / 27.2 ($p$ < 0.001)$^{a}$ & 28.4 / 27.7 ($p$ = 0.017)$^{a}$ \\
-\quad Mean take-off duration (s) & 0.65 / 0.87 & 0.79 / 0.76 \\
-\quad Mean landing duration (s) & 0.24 / 0.25 & 0.29 / 0.14 \\
+\multicolumn{5}{@{}l}{\textit{Panel A. Characteristics}} \\
+\quad Trials (\textit{n}) & 329 & 476 & 560 & 245 \\
+\quad Share of all trials (\%) & 41 & 59 & 70 & 30 \\
+\quad Share of matched-height trials (\%)$^{a}$ & 35 & 65 & 74 & 26 \\
+\quad Jump height (cm), mean$^{b}$ & 29.6 & 27.2 & 28.4 & 27.7 \\
+\quad Take-off duration (ms), mean & 649 & 875 & 790 & 764 \\
+\quad Landing duration (ms), mean & 240 & 252 & 293 & 141 \\
 \addlinespace
-\multicolumn{3}{@{}l}{\textit{Is there cluster structure?}} \\
-\quad Mean silhouette & 0.30 & 0.37 \\
-\quad Number of groups preferred by the gap statistic$^{b}$ & 1 & 6 \\
-\quad Dip test of unimodality, first FPC score ($p$) & 0.74 & 0.98 \\
-\quad Bootstrap Jaccard similarity (range over profiles) & 0.93--0.95 & 0.97--0.99 \\
+\multicolumn{5}{@{}l}{\textit{Panel B. Evidence for distinct groups}} \\
+\quad Mean silhouette width (0 to 1) & \multicolumn{2}{c}{0.30} & \multicolumn{2}{c}{0.37} \\
+\quad Groups preferred by the gap statistic$^{c}$ & \multicolumn{2}{c}{1} & \multicolumn{2}{c}{6} \\
+\quad Dip test of unimodality, \textit{p} & \multicolumn{2}{c}{.741} & \multicolumn{2}{c}{.978} \\
+\quad Lowest bootstrap Jaccard similarity & \multicolumn{2}{c}{0.93} & \multicolumn{2}{c}{0.97} \\
 \addlinespace
-\multicolumn{3}{@{}l}{\textit{Stability}} \\
-\quad Same profile in every session, \% (athletes with $\geq$ 2 sessions, $n$ = 83) & 55 & 70 \\
-\quad Expected by chance, \% (permutation $p$) & 43 (0.007) & 51 ($<$0.001) \\
-\quad Two trials in one session share a profile, \% (chance) & 76 (52) & 80 (58) \\
-\quad Profile mix in the matched-height band, \% (all trials)$^{c}$ & 35 / 65 (41 / 59) & 74 / 26 (70 / 30) \\
-\quad Agreement with profiles after elastic alignment (ARI) & {--} & 0.17 \\
+\multicolumn{5}{@{}l}{\textit{Panel C. Stability within athletes (83 athletes tested in two or more sessions)}} \\
+\quad Same profile in every session (\%) & \multicolumn{2}{c}{55} & \multicolumn{2}{c}{70} \\
+\quad Expected by chance (\%) & \multicolumn{2}{c}{43} & \multicolumn{2}{c}{51} \\
+\quad Permutation \textit{p} & \multicolumn{2}{c}{.007} & \multicolumn{2}{c}{{$<$.001}} \\
+\quad Same profile for two trials in a session (\%) & \multicolumn{2}{c}{76} & \multicolumn{2}{c}{80} \\
+\quad Expected by chance (\%) & \multicolumn{2}{c}{52} & \multicolumn{2}{c}{58} \\
+\quad Agreement after elastic alignment$^{d}$ & \multicolumn{2}{c}{{--}} & \multicolumn{2}{c}{0.17} \\
 \bottomrule
-\end{tabularx}
+\end{tabular*}
 \begin{tablenotes}[flushleft]\footnotesize
-\item \textit{Note.} Profiles from $k$-means ($k$ = 2) on functional principal component (FPC) scores covering at least 90\% of variance, computed separately for each phase. $^{a}$Linear mixed model with an athlete random intercept. $^{b}$Candidates 1 to 6; 1 means no cluster structure. $^{c}$Trials with jump height between the 45th and 55th percentiles (26.0--28.2\,cm, 82 trials).
+\item \textit{Note.} Profiles from \textit{k}-means clustering (\textit{k} = 2) of functional principal component scores covering at least 90\% of variance, separately for each phase. Dash = not applicable.
+\item $^{a}$Jump height between the 45th and 55th percentiles (26.0--28.2\,cm; 82 trials). $^{b}$Difference between profiles in a linear mixed model with an athlete random intercept: take-off \textit{p} < .001, landing \textit{p} = .017. $^{c}$Candidates 1 to 6; 1 indicates no cluster structure. $^{d}$Adjusted Rand index between profiles from aligned and unaligned landing curves (1 = identical, 0 = chance).
 \end{tablenotes}
 \end{threeparttable}
 \end{table}

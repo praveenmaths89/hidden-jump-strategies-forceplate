@@ -22,7 +22,8 @@ def sub_cmd(s, pat, fn):
         out.append(s[i:k]); a, j = braced(s, k + len(pat) - 1); out.append(fn(a)); i = j
 def table(t):
     t = re.sub(r'^%.*\n', '', t, flags=re.M)
-    note = re.search(r'\\begin\{tablenotes\}(\[[^\]]*\])?\\footnotesize\s*\\item\s*(.*?)\\end\{tablenotes\}', t, re.S)
+    nb = re.search(r'\\begin\{tablenotes\}(\[[^\]]*\])?\\footnotesize(.*?)\\end\{tablenotes\}', t, re.S)
+    items = [x.strip() for x in re.split(r'\\item\s*', nb.group(2)) if x.strip()] if nb else []
     t = re.sub(r'\\begin\{tablenotes\}.*?\\end\{tablenotes\}', '', t, flags=re.S)
     m = re.search(r'\\begin\{tabular\}\{', t)
     if m:
@@ -39,7 +40,13 @@ def table(t):
         t = t.replace('\\end{tabularx}', '\\end{tabular}')
     t = re.sub(r'\\multicolumn\{(\d+)\}\{@\{\}l\}', r'\\multicolumn{\1}{l}', t)
     t = t.replace('\\addlinespace', '').replace('\\quad ', '').replace('\\enspace', ' ')
-    t = re.sub(r'\\begin\{tabular\*\}\{\\linewidth\}\{@\{\\extracolsep\{\\fill\}\}([^@]*)@\{\}\}', lambda m: '\\begin{tabular}{' + m.group(1) + '}', t)
+    m = re.search(r'\\begin\{tabular\*\}\{\\linewidth\}\{', t)
+    if m:
+        _, j = braced(t, m.end() - 1)
+        inner = t[j:t.index('\\end{tabular*}')]
+        nc = max(l.count('&') for l in inner.split('\\\\')) + 1
+        t = t[:m.start()] + '\\begin{tabular}{l' + 'c' * (nc - 1) + '}' + t[j:]
+    t = re.sub(r'\\hspace\{[^}]*\}', '', t)
     t = t.replace('\\end{tabular*}', '\\end{tabular}')
     t = re.sub(r'\\begin\{tabularx\}\{\\linewidth\}\{@\{\}>\{\\raggedright\\arraybackslash\}Xll@\{\}\}', r'\\begin{tabular}{lll}', t).replace('\\end{tabularx}', '\\end{tabular}')
     t = re.sub(r'>\{\\raggedright\\arraybackslash\}p\{[^}]*\}', 'l', t)
@@ -49,7 +56,10 @@ def table(t):
     for c in ['\\begin{threeparttable}', '\\end{threeparttable}', '\\footnotesize', '\\small', '\\centering']: t = t.replace(c, '')
     t = re.sub(r'\\setlength\{\\tabcolsep\}\{[^}]*\}', '', t)
     t = t.replace('Landing~', 'Landing ')
-    t = t.replace('\\end{table}', '\\end{table}\n\n' + ('\\emph{Note.} ' + note.group(2).replace('\\textit{Note.}', '').strip() + '\n\n' if note else ''))
+    notes = ''
+    for k, it in enumerate(items):
+        notes += (('\\emph{Note.} ' + it.replace('\\textit{Note.}', '').strip()) if k == 0 else it) + '\n\n'
+    t = t.replace('\\end{table}', '\\end{table}\n\n' + notes)
     return t
 def inline(s):
     return re.sub(r'\\input\{tables/([^}]+)\}', lambda m: table(rd('tables/' + m.group(1) + '.tex')), s)
@@ -59,6 +69,9 @@ SIMPLE = {'-': '\u2212', '\\pm': '\u00b1', '\\times': '\u00d7', '^a': '\\textsup
 def simplemath(m):
     k = m.group(1)
     if k in SIMPLE: return SIMPLE[k]
+    if k in ('<', '>'): return k
+    mm = re.fullmatch(r'\^\{?([a-d])\}?', k)
+    if mm: return '\\textsuperscript{' + mm.group(1) + '}'
     if re.fullmatch(r'[A-Za-z]', k): return '\\emph{' + k + '}'
     return m.group(0)
 LAB = {}
