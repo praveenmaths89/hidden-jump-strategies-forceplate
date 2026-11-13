@@ -1,0 +1,3 @@
+"block","k_chosen","silhouette","gap_k_firstSEmax","gap_k_Tibs2001","gap_k1","gap_k2","gap_se2","mclust_bestG","mclust_bic_G1","mclust_bic_G2","dip_FPC1_p","dip_logduration_p","jaccard_min","verdict"
+"takeoff",2,0.301,1,1,0.749,0.675,0.009,3,-10867.7,-10620.3,0.741,0.899,0.926,"no clear cluster structure (continuum)"
+"landing",2,0.373,6,6,0.698,0.775,0.007,6,-26840.2,-24796.7,0.978,0.486,0.969,"weak structure: partition of a continuum"

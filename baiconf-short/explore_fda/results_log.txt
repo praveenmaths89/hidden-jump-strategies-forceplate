@@ -1,0 +1,123 @@
+[0] 805 trials, 212 athletes, 327 sessions after QC 
+    age < 18: 598 trials (74.3%); athletes with >=2 sessions: 83 
+
+[1] Function-on-scalar regression 
+    1 SD: jump height 8.43 cm, age 5.73 y, body mass 15.75 kg 
+    model A takeoff  pointwise R2: median 0.036, range 0.003-0.708 
+    model A landing  pointwise R2: median 0.043, range 0.028-0.081 
+    model B takeoff  pointwise R2: median 0.487, range 0.110-0.801 
+    model B landing  pointwise R2: median 0.070, range 0.033-0.091 
+    A takeoff  jump_height      sim-sig: 13-33%, 65-99% | +: 65-99% | -: 13-33% | max|b|=0.252 BW at 95% 
+    A takeoff  age              sim-sig: 0-0%, 95-99% | +: 95-99% | -: 0-0% | max|b|=0.094 BW at 97% 
+    A takeoff  body_mass        sim-sig: 0-6%, 98-100% | +: 0-6% | -: 98-100% | max|b|=0.073 BW at 78% 
+    A landing  jump_height      sim-sig: 3-28% | +: 3-28% | -: none | max|b|=0.363 BW at 14% 
+    A landing  age              sim-sig: none | +: none | -: none | max|b|=0.345 BW at 35% 
+    A landing  body_mass        sim-sig: 0-0%, 75-83% | +: none | -: 0-0%, 75-83% | max|b|=0.368 BW at 33% 
+    B takeoff  jump_height      sim-sig: 29-43%, 85-99% | +: 29-43%, 85-99% | -: none | max|b|=0.307 BW at 95% 
+    B takeoff  age              sim-sig: 0-0%, 97-99% | +: 97-99% | -: 0-0% | max|b|=0.067 BW at 97% 
+    B takeoff  body_mass        sim-sig: 0-8%, 16-41%, 50-90%, 100-100% | +: 0-8%, 16-41% | -: 50-90%, 100-100% | max|b|=0.466 BW at 68% 
+    B takeoff  conc_peak_force  sim-sig: 76-86% | +: 76-86% | -: none | max|b|=0.268 BW at 63% 
+    B takeoff  braking_impulse  sim-sig: 1-38%, 46-68%, 74-88% | +: 46-68% | -: 1-38%, 74-88% | max|b|=0.266 BW at 58% 
+    B takeoff  impulse_100ms    sim-sig: 4-10%, 23-50%, 64-88%, 96-99% | +: 4-10%, 64-88% | -: 23-50%, 96-99% | max|b|=0.445 BW at 74% 
+    B landing  jump_height      sim-sig: 3-27% | +: 3-27% | -: none | max|b|=0.411 BW at 14% 
+    B landing  age              sim-sig: 59-100% | +: 59-100% | -: none | max|b|=0.352 BW at 35% 
+    B landing  body_mass        sim-sig: 80-100% | +: none | -: 80-100% | max|b|=0.369 BW at 62% 
+    B landing  conc_peak_force  sim-sig: none | +: none | -: none | max|b|=0.283 BW at 47% 
+    B landing  braking_impulse  sim-sig: none | +: none | -: none | max|b|=0.152 BW at 31% 
+    B landing  impulse_100ms    sim-sig: none | +: none | -: none | max|b|=0.425 BW at 50% 
+
+[2] Clustering 
+    takeoff: 4 FPCs retained (91.0% variance) 
+    takeoff Mclust best: VEV with G = 3 
+    takeoff chosen k = 2 (silhouette 0.301, stability ARI 0.81); sizes: 329/476 
+    landing: 6 FPCs retained (90.3% variance) 
+    landing Mclust best: VEV with G = 6 
+    landing chosen k = 2 (silhouette 0.373, stability ARI 0.95); sizes: 560/245 
+    takeoff cluster means (JH cm / age / BM / landing s / contraction s; n): 
+      C1 n=329 (135 ath): JH 29.6, age 16.0, BM 54.7, land 0.240, CT 0.649, <18 72% 
+      C2 n=476 (169 ath): JH 27.2, age 16.4, BM 55.0, land 0.252, CT 0.875, <18 76% 
+      LMM (athlete RI) LRT p: jump height 2.71e-07, age 0.000214, body mass 0.000122 
+    landing cluster means (JH cm / age / BM / landing s / contraction s; n): 
+      C1 n=560 (172 ath): JH 28.4, age 16.1, BM 55.3, land 0.293, CT 0.790, <18 74% 
+      C2 n=245 (121 ath): JH 27.7, age 16.5, BM 53.9, land 0.141, CT 0.764, <18 74% 
+      LMM (athlete RI) LRT p: jump height 0.0175, age 0.582, body mass 0.133 
+
+    Profile stability across sessions (athletes with >= 2 sessions) 
+    takeoff: 83 athletes; same profile in all sessions 55.4% vs chance 42.7% (perm; analytic 43.0%), p = 0.007; within-session trial agreement 75.6% vs chance 51.7% 
+    landing: 83 athletes; same profile in all sessions 69.9% vs chance 51.0% (perm; analytic 51.1%), p = 0.000; within-session trial agreement 80.0% vs chance 57.7% 
+    Take-off x landing profile cross-tab (Cramer's V = 0.020, chi-sq p = 0.572): 
+       landing
+takeoff   1   2
+      1 233  96
+      2 327 149
+
+[3] SPM-style tests 
+    a: top vs bottom jump-height tertile | takeoff (n 71 vs 71; thr |t| > 1.98) 
+      0-7%  group1 > group2  mass 40.8  p = 0.0608 
+      23-29%  group1 < group2  mass 15.2  p = 0.2266 
+      81-99%  group1 > group2  mass 184.1  p = 0.0002  * 
+      100-100%  group1 < group2  mass 8.9  p = 0.2941 
+    b: 18+ vs under 18 | takeoff (n 48 vs 164; thr |t| > 1.97) 
+      0-5%  group1 > group2  mass 35.5  p = 0.0860 
+      87-99%  group1 > group2  mass 94.6  p = 0.0008  * 
+      100-100%  group1 < group2  mass 10.3  p = 0.3083 
+    c: profile 2 vs 1 (within athlete) | takeoff (n 92 vs 92; thr |t| > 1.99) 
+      7-41%  group1 > group2  mass 302.5  p = 0.0002  * 
+      45-88%  group1 < group2  mass 425.7  p = 0.0002  * 
+      91-99%  group1 > group2  mass 61.8  p = 0.0164  * 
+    a: top vs bottom jump-height tertile | landing (n 71 vs 71; thr |t| > 1.98) 
+      2-56%  group1 > group2  mass 162.1  p = 0.0034  * 
+    b: 18+ vs under 18 | landing (n 48 vs 164; thr |t| > 1.97) 
+      0-0%  group1 < group2  mass 4.3  p = 0.3969 
+      10-22%  group1 > group2  mass 44.0  p = 0.0694 
+    c: profile 2 vs 1 (within athlete) | landing (n 81 vs 81; thr |t| > 1.99) 
+      1-26%  group1 < group2  mass 160.2  p = 0.0028  * 
+      29-100%  group1 > group2  mass 682.2  p = 0.0002  * 
+
+[4] Matched-height band 
+    band 26.0-28.2 cm: 82 trials, 51 athletes 
+    takeoff: band profile mix 35%/65% (all trials 41%/59%); mean pointwise SD ratio band/all = 0.98 
+    landing: band profile mix 74%/26% (all trials 70%/30%); mean pointwise SD ratio band/all = 0.97 
+
+[5] Functional mixed models (pffr) 
+    model A takeoff  fitted in 50 s (athlete efns 5 [96%], session efns 5 [96%]) 
+      jump_height      pffr sim-sig: 4-30%, 38-68%, 72-84%, 88-98% | OLS-boot: 14-32%, 66-98%           | both: 14-30%, 66-68%, 72-84%, 88-98% | max 0.247 [0.231, 0.263] at 96% 
+      age              pffr sim-sig: 76-90%, 98-98%           | OLS-boot: 0-0%, 96-98%             | both: 98-98% | max 0.062 [0.031, 0.094] at 80% 
+      body_mass        pffr sim-sig: 2-14%, 42-66%, 94-100%   | OLS-boot: 0-6%, 98-100%            | both: 2-6%, 98-100% | max -0.065 [-0.092, -0.037] at 54% 
+      residuals: median lag-1 corr 0.955; residual FPC1 carries 44.1% of residual variance; athlete ICC of residual FPC1 0.000; total R2 (fixed+random) 0.740 
+    model A landing  fitted in 46 s (athlete efns 5 [90%], session efns 5 [88%]) 
+      jump_height      pffr sim-sig: 0-32%, 80-100%           | OLS-boot: 4-28%                    | both: 4-28% | max 0.896 [0.808, 0.984] at 12% 
+      age              pffr sim-sig: none                     | OLS-boot: none                     | both: none | max -0.010 [-0.048, 0.027] at 100% 
+      body_mass        pffr sim-sig: 0-100%                   | OLS-boot: 0-0%, 76-82%             | both: 0-0%, 76-82% | max -0.086 [-0.123, -0.049] at 18% 
+      residuals: median lag-1 corr 0.968; residual FPC1 carries 26.2% of residual variance; athlete ICC of residual FPC1 0.000; total R2 (fixed+random) 0.608 
+    model B takeoff  fitted in 45 s (athlete efns 5 [93%], session efns 5 [93%]) 
+      jump_height      pffr sim-sig: 4-24%, 30-68%, 74-84%, 88-98% | OLS-boot: 30-42%, 86-98%           | both: 30-42%, 88-98% | max 0.199 [0.183, 0.215] at 96% 
+      age              pffr sim-sig: 26-30%, 74-86%, 98-100%  | OLS-boot: 0-0%, 98-98%             | both: 98-98% | max 0.048 [0.027, 0.069] at 78% 
+      body_mass        pffr sim-sig: 4-42%, 48-88%, 92-98%    | OLS-boot: 0-8%, 16-40%, 50-90%, 100-100% | both: 4-8%, 16-40%, 50-88% | max -0.610 [-0.660, -0.561] at 64% 
+      conc_peak_force  pffr sim-sig: 46-86%, 92-98%           | OLS-boot: 76-86%                   | both: 76-86% | max 0.358 [0.333, 0.384] at 62% 
+      braking_impulse  pffr sim-sig: 6-42%, 46-68%, 72-88%, 92-96% | OLS-boot: 2-38%, 46-68%, 74-88%    | both: 6-38%, 46-68%, 74-88% | max -0.162 [-0.171, -0.152] at 28% 
+      impulse_100ms    pffr sim-sig: 8-8%, 16-52%, 58-98%     | OLS-boot: 4-10%, 24-50%, 64-88%, 96-98% | both: 8-8%, 24-50%, 64-88%, 96-98% | max 0.392 [0.374, 0.409] at 74% 
+      residuals: median lag-1 corr 0.942; residual FPC1 carries 40.3% of residual variance; athlete ICC of residual FPC1 0.000; total R2 (fixed+random) 0.832 
+    model B landing  fitted in 36 s (athlete efns 5 [90%], session efns 5 [88%]) 
+      jump_height      pffr sim-sig: 2-34%, 78-98%            | OLS-boot: 4-26%                    | both: 4-26% | max 0.931 [0.838, 1.024] at 12% 
+      age              pffr sim-sig: none                     | OLS-boot: 60-100%                  | both: none | max -0.025 [-0.073, 0.023] at 100% 
+      body_mass        pffr sim-sig: 68-100%                  | OLS-boot: 80-100%                  | both: 80-100% | max -0.133 [-0.207, -0.059] at 100% 
+      conc_peak_force  pffr sim-sig: 36-50%                   | OLS-boot: none                     | both: none | max -0.133 [-0.211, -0.056] at 44% 
+      braking_impulse  pffr sim-sig: 20-36%, 70-84%           | OLS-boot: none                     | both: none | max -0.141 [-0.187, -0.095] at 28% 
+      impulse_100ms    pffr sim-sig: 26-30%, 46-80%           | OLS-boot: none                     | both: none | max 0.179 [0.119, 0.240] at 60% 
+      residuals: median lag-1 corr 0.968; residual FPC1 carries 26.3% of residual variance; athlete ICC of residual FPC1 0.000; total R2 (fixed+random) 0.610 
+
+[6] Cluster validation (k = 1 / continuum comparison) 
+    takeoff: silhouette 0.301; gap picks k = 1 (firstSEmax) / 1 (Tibs2001); gap(1) = 0.749, gap(2) = 0.675 (SE 0.009); Mclust best G = 3, BIC G1 -10868 vs G2 -10620; dip p FPC1 = 0.741, log-duration = 0.899; Jaccard 0.93/0.95 -> no clear cluster structure (continuum) 
+    landing: silhouette 0.373; gap picks k = 6 (firstSEmax) / 6 (Tibs2001); gap(1) = 0.698, gap(2) = 0.775 (SE 0.007); Mclust best G = 6, BIC G1 -26840 vs G2 -24797; dip p FPC1 = 0.978, log-duration = 0.486; Jaccard 0.99/0.97 -> weak structure: partition of a continuum 
+
+[7] SPM adjusted (Freedman-Lane) and effect sizes 
+    a: top vs bottom jump-height tertile | takeoff  adjusted for age+bm: 12-32% (p=0.0206)*; 66-99% (p=0.0002)* 
+      effect at 93% (peak |t| in 81-99%): diff 0.547 BW [0.480, 0.611]; 2.06 vs 1.52 BW; Hedges g 2.63 [2.31, 2.94]; Bonferroni(4) yes 
+    b: 18+ vs under 18 | takeoff  adjusted for bm+jh: 0-10% (p=0.1230); 34-43% (p=0.1584); 67-75% (p=0.1816); 95-99% (p=0.1540) 
+      effect at 96% (peak |t| in 87-99%): diff 0.467 BW [0.365, 0.559]; 1.57 vs 1.10 BW; Hedges g 1.60 [1.25, 1.92]; Bonferroni(4) yes 
+    a: top vs bottom jump-height tertile | landing  adjusted for age+bm: 2-2% (p=0.4433); 4-5% (p=0.3549); 9-11% (p=0.3057); 14-15% (p=0.3425); 19-40% (p=0.0430)* 
+      effect at 15% (peak |t| in 2-56%): diff 0.750 BW [0.454, 1.037]; 2.65 vs 1.90 BW; Hedges g 0.83 [0.50, 1.15]; Bonferroni(4) yes 
+    b: 18+ vs under 18 | landing  adjusted for bm+jh: 14-18% (p=0.2260) 
+
+Runtime: 5.3 min 

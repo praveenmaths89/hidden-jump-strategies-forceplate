@@ -1,0 +1,6 @@
+SRVF: 2.6 min; variance total 1.318, amplitude 0.649, phase 0.721 
+peak landing force position: SD 14.6% unaligned -> 4.8% aligned 
+aligned amplitude          (a) 2-45% (g1>g2, p=0.0030) | (b) none 
+phase (gamma - t, % units) (a) none | (b) none 
+FoSR JH on aligned amplitude: sig 1-10%, 13-45%, 54-94% (max 0.650 BW/SD at 27%); on phase: sig none (max 2.79 %-units/SD at 35%) 
+k=2 aligned vs unaligned landing clustering: ARI 0.175 

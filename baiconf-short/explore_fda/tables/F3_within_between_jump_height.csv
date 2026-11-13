@@ -1,0 +1,5 @@
+"block","term","sig_sim","max_effect_per_SD_JH","ci","at_pct"
+"takeoff","jh_between","18-29%, 67-99%",0.26,"[0.223, 0.297]",95
+"takeoff","jh_within","3-29%, 46-63%, 92-99%",0.244,"[0.143, 0.350]",58
+"landing","jh_between","9-15%, 18-25%",0.329,"[0.139, 0.517]",24
+"landing","jh_within","2-16%, 23-23%",0.966,"[0.626, 1.383]",13

@@ -1,0 +1,5 @@
+"block","version","start","end","mass","p","p_mc_se","range"
+"takeoff","raw",1,2,5.27128271522589,0.464707058588282,0.0070534304885851,"0-1%"
+"takeoff","adjusted",1,3,9.65930423891797,0.382723455308938,0.006873808435872,"0-2%"
+"landing","raw",NA,NA,NA,NA,NA,"none"
+"landing","adjusted",NA,NA,NA,NA,NA,"none"

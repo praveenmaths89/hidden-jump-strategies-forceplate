@@ -1,0 +1,21 @@
+805 trials 
+  takeoff   51 linear  FoSR JH sim-sig: 14-32%, 66-98%         crit 2.91 | SPM(a): 82-98% (p=0.0002) | PC cum var 48.3/75.4/84.3/91 
+  takeoff   51 spline  FoSR JH sim-sig: 14-32%, 66-98%         crit 2.91 | SPM(a): 82-98% (p=0.0002) | PC cum var 48.3/75.4/84.3/91 
+  takeoff  101 linear  FoSR JH sim-sig: 13-33%, 65-99%         crit 2.93 | SPM(a): 81-99% (p=0.0002) | PC cum var 48.3/75.5/84.4/91 
+  takeoff  201 linear  FoSR JH sim-sig: 12-33%, 64-100%        crit 2.93 | SPM(a): 81-100% (p=0.0002) | PC cum var 48.4/75.6/84.5/91.1 
+  takeoff  201 spline  FoSR JH sim-sig: 12-33%, 64-100%        crit 2.95 | SPM(a): 81-100% (p=0.0002) | PC cum var 48.3/75.5/84.4/91 
+  landing   51 linear  FoSR JH sim-sig: 4-28%                  crit 2.95 | SPM(a): 2-56% (p=0.0034) | PC cum var 40/57.3/70.7/80.3 
+  landing   51 spline  FoSR JH sim-sig: 4-28%                  crit 2.95 | SPM(a): 2-56% (p=0.0034) | PC cum var 40/57.3/70.7/80.3 
+  landing  101 linear  FoSR JH sim-sig: 3-28%                  crit 2.98 | SPM(a): 2-56% (p=0.0034) | PC cum var 40/57.3/70.7/80.3 
+  landing  201 linear  FoSR JH sim-sig: 3-28%                  crit 2.98 | SPM(a): 2-56% (p=0.0034) | PC cum var 40.2/57.5/71.1/80.7 
+  landing  201 spline  FoSR JH sim-sig: 3-28%                  crit 3.00 | SPM(a): 2-56% (p=0.0034) | PC cum var 40/57.3/70.7/80.3 
+  velocity check: take-off velocity from curve vs from jump height: r = 0.964, median ratio 0.985 (IQR 0.961-1.004) 
+  take-off landmarks found in 804/805 trials: min-velocity at 40.8% (SD 7.0), zero-velocity at 64.9% (SD 6.2) 
+  landing peak force at 26.9% of landing (SD 14.6; IQR 17-34) 
+  take-off target landmarks: 0 | 40.8 | 64.9 | 100 ; landing target: 0 | 26.9 | 100 
+  takeoff  extra landmarks: FoSR JH sim-sig 4-40%, 45-99% | SPM(a) 80-99% (p=0.0002) | PC cum var 61.6/79.3/87.5/92 
+     timing of min velocity vs jump height: +1.02 % of take-off per SD (95% CI +0.31 to +1.84) 
+     timing of zero velocity vs jump height: +1.12 % of take-off per SD (95% CI +0.47 to +1.78) 
+  landing  extra landmarks: FoSR JH sim-sig 3-11%, 17-30%, 49-66% | SPM(a) 4-33% (p=0.0160) | PC cum var 59.6/75.5/84.3/88.8 
+     timing of peak landing force vs jump height: -2.28 % of landing per SD (95% CI -3.99 to -0.69) 
+Runtime 2.5 min 

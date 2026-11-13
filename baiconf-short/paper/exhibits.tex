@@ -1,0 +1,16 @@
+% Separate exhibits file (tables and figures), as requested by IIMB Management Review
+\documentclass[12pt,a4paper]{article}
+\input{preamble}
+\begin{document}
+\begin{center}{\large\bfseries Exhibits (tables and figures) for: \papertitle\par}\end{center}
+\section*{Tables}
+\input{tables/tab1_sample}\clearpage
+\input{tables/tab2_fosr}\clearpage
+\input{tables/tab3_spm}\clearpage
+\input{tables/tab4_profiles}\clearpage
+\section*{Figures}
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig1_mean_curves_fosr}\caption{\capFosr}\label{fig:fosr}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig2_tertile_comparison}\caption{\capSpm}\label{fig:spm}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig3_matched_height}\caption{\capBand}\label{fig:band}\end{figure}\clearpage
+\begin{figure}[p]\centering\includegraphics[width=\linewidth]{Fig4_profile_continuum}\caption{\capProfiles}\label{fig:profiles}\end{figure}
+\end{document}

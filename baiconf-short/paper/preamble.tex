@@ -1,0 +1,43 @@
+% Shared preamble: IIMB Management Review submission (BAICONF 2026, BAI2575)
+% Compile with pdfLaTeX + Biber (Overleaf: Menu > Compiler = pdfLaTeX; Biber runs automatically).
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[british]{babel}
+\usepackage{newtxtext,newtxmath}            % Times New Roman equivalent
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{setspace}
+\usepackage{amsmath,bm}
+\usepackage{graphicx}
+\usepackage{booktabs,tabularx,array,makecell,threeparttable}
+\usepackage{pdflscape}
+\usepackage{siunitx}                       % S columns: numbers aligned on the decimal point
+\sisetup{group-digits=none, table-number-alignment=center, input-symbols={[]}}
+\usepackage[section]{placeins}             % floats stay within their section (\FloatBarrier at each \section)
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.12}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
+\raggedbottom
+\usepackage{xurl}                          % DOIs break cleanly at line ends
+\usepackage[labelsep=period,font=small,labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
+\captionsetup[figure]{name=Fig.}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{csquotes}
+\usepackage[style=apa,backend=biber,uniquename=false]{biblatex}
+\addbibresource{references.bib}
+\usepackage[hidelinks]{hyperref}
+\urlstyle{same}
+\setlength{\biburlnumskip}{0mu}\setlength{\biburlucskip}{0mu}\setlength{\biburllcskip}{0mu}
+\AtBeginBibliography{\raggedright}
+\renewcommand{\cellalign}{tl}
+\renewcommand{\theadalign}{tl}
+\newcommand{\ethics}[1]{\textbf{#1}}   % ethics statement placeholder: replace the bracketed text, then remove the bold
+\input{numbers_fda}
+\input{captions}
+\graphicspath{{figures/}}
+\setlength{\emergencystretch}{2em}
+% Testing period: min--max recorded date (IST) of the 327 analysed sessions in the raw export (derived 13 Nov 2026)
+\newcommand{\testPeriod}{November 2022 and April 2026}
+\input{frontmatter}

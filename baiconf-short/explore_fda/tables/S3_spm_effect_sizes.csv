@@ -1,0 +1,4 @@
+"contrast","block","cluster","p_raw","survives_bonferroni_4","peak_pct","diff_bw","ci_lo","ci_hi","mean_g1","mean_g2","hedges_g","g_ci_lo","g_ci_hi"
+"a: top vs bottom jump-height tertile","takeoff","81-99%",0.0001999600079984,TRUE,93,0.547,0.48,0.611,2.064,1.518,2.63,2.31,2.94
+"b: 18+ vs under 18","takeoff","87-99%",0.000799840031993601,TRUE,96,0.467,0.365,0.559,1.572,1.105,1.6,1.25,1.92
+"a: top vs bottom jump-height tertile","landing","2-56%",0.00339932013597281,TRUE,15,0.75,0.454,1.037,2.649,1.9,0.83,0.5,1.15

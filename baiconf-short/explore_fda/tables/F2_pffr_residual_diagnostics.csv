@@ -1,0 +1,5 @@
+"model","block","resid_lag1_corr_median","resid_corr_mean_offdiag","resid_fpc1_share","resid_fpc1_icc_athlete","var_explained_total"
+"A","takeoff",0.955,0.034,0.441,0,0.74
+"A","landing",0.968,0.166,0.262,0,0.608
+"B","takeoff",0.942,0.046,0.403,0,0.832
+"B","landing",0.968,0.166,0.263,0,0.61

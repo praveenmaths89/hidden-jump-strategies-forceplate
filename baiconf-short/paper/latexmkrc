@@ -1,0 +1,4 @@
+# latexmk settings (Overleaf reads this file too). pdfLaTeX + Biber.
+$pdf_mode = 1;            # pdflatex
+$bibtex_use = 2;          # run biber when needed, delete .bbl on cleanup
+@default_files = ('main.tex', 'titlepage.tex', 'highlights.tex', 'exhibits.tex');

@@ -1,0 +1,5 @@
+"block","cluster","n_band","pct_band","pct_all","mean_sd_ratio_band_vs_all"
+"takeoff","1",29,35.4,40.9,0.98
+"takeoff","2",53,64.6,59.1,0.98
+"landing","1",61,74.4,69.6,0.969
+"landing","2",21,25.6,30.4,0.969

@@ -1,0 +1,13 @@
+"block","weighting","term","sim_crit","sig_sim","max_abs","at"
+"takeoff","trial_weighted","jh",2.9626528485745,"13-32%, 65-99%",0.252439807710601,95
+"takeoff","trial_weighted","age",2.98352713599667,"0-0%, 95-99%",0.0944348427097908,97
+"takeoff","athlete_weighted","jh",2.96488733398546,"16-27%, 78-99%",0.265845387570829,95
+"takeoff","athlete_weighted","age",3.05745537124035,"0-0%, 95-99%",0.101195807162209,97
+"takeoff","one_session (median of 500 draws)","jh",NA,"see draw range",0.269804613483216,95
+"takeoff","one_session (median of 500 draws)","age",NA,"see draw range",0.101297219185842,65
+"landing","trial_weighted","jh",2.97921038269661,"4-27%",0.36333529262077,14
+"landing","trial_weighted","age",2.98756041407667,"none",0.344571575655851,35
+"landing","athlete_weighted","jh",3.02421138712622,"3-32%",0.433802952959334,24
+"landing","athlete_weighted","age",3.0062758896246,"none",0.173734413282967,56
+"landing","one_session (median of 500 draws)","jh",NA,"see draw range",0.449946180346412,24
+"landing","one_session (median of 500 draws)","age",NA,"see draw range",0.160664112511063,56

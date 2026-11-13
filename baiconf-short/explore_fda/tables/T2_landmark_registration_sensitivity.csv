@@ -1,0 +1,3 @@
+"block","registration","fosr_jh_sim_sig","spm_a_sig","pc1_4_cum_var"
+"takeoff","onset|min velocity|zero velocity|take-off","4-40%, 45-99%","80-99% (p=0.0002)","61.6/79.3/87.5/92"
+"landing","touch-down|peak force|lowest COM","3-11%, 17-30%, 49-66%","4-33% (p=0.0160)","59.6/75.5/84.3/88.8"

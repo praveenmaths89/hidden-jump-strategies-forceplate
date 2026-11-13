@@ -1,0 +1,100 @@
+Loaded 833 trials / 215 athletes / 333 sessions; kept 805 / 212 / 327 
+
+(1) Signal sampling 
+   native_fs (kept trials): 500 Hz: 59; 1000 Hz: 746 
+  phase native_fs trials min    q25 median q75  max n_below_101 n_above_505
+1  n_ld       500     59  41  81.50  120.0 147  289          21           0
+2  n_ld      1000    746  70 151.25  234.5 316  928          22          19
+3  n_to       500     59 180 334.00  376.0 419  681           0           5
+4  n_to      1000    746 306 663.00  777.0 903 1484           0         692
+5  n_ld        NA    805  41 144.00  223.0 310  928          43          19
+6  n_to        NA    805 180 627.00  762.0 889 1484           0         697
+   NOTE: take-off duration taken as vendor contraction time (onset to take-off); assumes the curve window matches it. 
+   grid spacing: take-off median 7.7 ms (max 14.8); landing median 2.4 ms (max 9.3) 
+   landing peak retained (curve max / vendor peak landing force): median 0.9971, 1st pct 0.923, min 0.857; 2.6% of trials < 0.95, 10.1% < 0.98 
+   take-off: curve max / vendor concentric peak force: median 0.9989, min 0.992, max 1.510 (should be ~1 if peak is in window) 
+   landing retention vs samples per landing: Spearman rho = -0.27; by fs: 500 Hz median 0.9961, 1000 Hz median 0.9971 
+   landing retention vs landing duration: Spearman rho = -0.29 
+   linear vs spline at grid midpoints (x BW): take-off median 0.0009 / 99th pct 0.0166 / max 0.252; landing median 0.0012 / 99th pct 0.1142 / max 1.204 
+   halving the grid (51 pts) -> peak loss median 0.02% (99th pct 0.71%) take-off; 0.00% (99th pct 19.52%) landing 
+   athletes with both rates: 6 (excluded from the fs test) 
+   500 Hz athletes 14 (trials 59) vs 1000 Hz athletes 192; athlete means 500 vs 1000 Hz: JH 27.4 vs 27.5 cm, age 15.7 vs 16.2, BM 50.8 vs 54.1; landing duration (trial) 0.247 vs 0.247 s 
+   500 vs 1000 Hz raw takeoff : 0-1% (p=0.4647) 
+   500 vs 1000 Hz adjusted takeoff : 0-2% (p=0.3827) 
+   500 vs 1000 Hz raw landing : no supra-threshold cluster 
+   500 vs 1000 Hz adjusted landing : no supra-threshold cluster 
+
+(2) Study sampling 
+   trials per athlete: 1:11 2:58 3:60 4:20 5:28 6:6 7:14 8:7 9:2 10:2 11:2 12:1 16:1 
+   sessions per athlete: 1:129 2:58 3:20 4:4 6:1 
+   trials per session: 1:24 2:154 3:129 4:16 5:3 7:1 
+   top 10% of athletes (22) contribute 24.0% of trials; Gini of trials per athlete = 0.30 
+   takeoff  jh  corr(trial-wtd, athlete-wtd) = 0.976, corr(trial-wtd, one-session) = 0.967; max |diff| = 0.041 / 0.047 BW 
+   takeoff  age corr(trial-wtd, athlete-wtd) = 0.975, corr(trial-wtd, one-session) = 0.973; max |diff| = 0.028 / 0.029 BW 
+   landing  jh  corr(trial-wtd, athlete-wtd) = 0.973, corr(trial-wtd, one-session) = 0.965; max |diff| = 0.096 / 0.099 BW 
+   landing  age corr(trial-wtd, athlete-wtd) = 0.682, corr(trial-wtd, one-session) = 0.653; max |diff| = 0.228 / 0.231 BW 
+           block                         weighting term sim_crit        sig_sim
+95%...1  takeoff                    trial_weighted   jh 2.962653 13-32%, 65-99%
+95%...2  takeoff                    trial_weighted  age 2.983527   0-0%, 95-99%
+95%...3  takeoff                  athlete_weighted   jh 2.964887 16-27%, 78-99%
+95%...4  takeoff                  athlete_weighted  age 3.057455   0-0%, 95-99%
+...5     takeoff one_session (median of 500 draws)   jh       NA see draw range
+...6     takeoff one_session (median of 500 draws)  age       NA see draw range
+95%...7  landing                    trial_weighted   jh 2.979210          4-27%
+95%...8  landing                    trial_weighted  age 2.987560           none
+95%...9  landing                  athlete_weighted   jh 3.024211          3-32%
+95%...10 landing                  athlete_weighted  age 3.006276           none
+...11    landing one_session (median of 500 draws)   jh       NA see draw range
+...12    landing one_session (median of 500 draws)  age       NA see draw range
+            max_abs at
+95%...1  0.25243981 95
+95%...2  0.09443484 97
+95%...3  0.26584539 95
+95%...4  0.10119581 97
+...5     0.26980461 95
+...6     0.10129722 65
+95%...7  0.36333529 14
+95%...8  0.34457158 35
+95%...9  0.43380295 24
+95%...10 0.17373441 56
+...11    0.44994618 24
+...12    0.16066411 56
+
+(3) Resampling checks 
+   athletes whose trials straddle age 18: 0 of 212 -> age group (<18 / >=18) is constant within athlete in this sample 
+   athletes with >1 session: age span median 0.7 y (max 2.5); body-mass span median 3.0 kg (max 12.3) -- spans > 15 kg: 0 (check for data-entry errors) 
+   MC error: p-value SE with B = 5000 permutations is at most 0.0071 (p = 0.5); at p = 0.05 it is 0.0031; smallest attainable p = 0.00020 
+
+(4) Selection 
+                          rule n_flagged
+fail_r1   R1 body mass invalid         5
+fail_r2  R2 quiet mass >5% off        15
+fail_r3  R3 flight force >50 N         2
+fail_r4 R4 missing metrics/age         0
+fail_r5   R5 no lowest-COM end        11
+              variable kept_n    kept_mean      kept_sd dropped_n dropped_mean
+1                  age    805   16.2664596 5.725790e+00        28   14.9000000
+2         body_mass_kg    805   54.9062112 1.575280e+01        28   40.8014286
+3       jump_height_cm    805   28.1882349 8.427182e+00        28   24.9447553
+4    conc_peak_force_n    805 1269.2590351 4.207431e+02        28 1115.2221329
+5 peak_landing_force_n    805 2912.9226997 1.377402e+03        28 2181.7221329
+6   contraction_time_s    805    0.7823640 1.895748e-01        28    0.7138929
+7        flight_time_s    805    0.4740484 7.236419e-02        28    0.4465714
+8  landing_to_lowcom_s    805    0.2467391 1.141197e-01        17    0.2462353
+    dropped_sd    wilcox_p
+1   6.18169340 0.166985148
+2  22.89738926 0.002409289
+3   7.19095965 0.044281966
+4 268.09561866 0.068811578
+5 795.01237839 0.006187580
+6   0.23447599 0.049175578
+7   0.06493953 0.044281966
+8   0.06146699 0.637863539
+   dropped trials: 28 from 21 athletes; athletes lost entirely: 3; dropped trials at 500 Hz: 1 
+  age_min age_q25 age_med age_q75 age_max pct_under18 pct_under15 bm_min bm_med
+1     8.8    12.5    14.2    18.2    37.9    74.28571    59.13043  25.03  53.37
+  bm_max
+1  95.97
+   test dates: NOT in the de-identified file (only pseudonymous session codes), so date coverage cannot be checked here. 
+
+Audit runtime 1.0 min 

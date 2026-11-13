@@ -1,0 +1,63 @@
+[PASS] main.pdf exists
+[PASS] titlepage.pdf exists
+[PASS] highlights.pdf exists
+[PASS] exhibits.pdf exists
+[PASS] Abstract <= 100 words -- 94 words
+[PASS] Abstract has no citations
+[PASS] Keywords <= 8 -- 8: Countermovement jump; Force plates; Functional data analysis; Statistical parametric mapping; Athlete monitoring; Landing; Youth football; Sports analytics
+[PASS] Extended summary <= 300 words -- 297 words
+[PASS] Short title <= 5 words -- "Curve shape beyond jump metrics" (5 words)
+[PASS] Manuscript <= 8,000 words excluding references -- 6207 excl. references (title, abstract, summary, text, tables, captions, declarations); 7377 incl. references
+[PASS] Body (Introduction to Conclusion) <= 4,500 words -- 4298 words incl. citations (4097 excl. 67 citations); Introduction 445+21; Literature review 599+90; Methodology 1441+69; Findings 963+0; Conclusion and implications 649+21
+[PASS] Sections exactly: 1 Introduction, 2 Literature review, 3 Methodology, 4 Findings, 5 Conclusion and implications, then References -- Introduction | Literature review | Methodology | Findings | Conclusion and implications
+[PASS] main.pdf: no author, centre, URL or repository identifiers
+[PASS] main.pdf: PDF Author metadata empty
+[PASS] exhibits.pdf: no author, centre, URL or repository identifiers
+[PASS] exhibits.pdf: PDF Author metadata empty
+[PASS] Title page gives the full repository URL, branch, folder and run command
+[PASS] Blinded manuscript has the withheld-link data statement
+[PASS] 12 pt document class
+[PASS] Times font (newtx or times/mathptmx)
+[PASS] Double spacing
+[PASS] Body font embedded is a Times face
+[PASS] main.log: 0 overfull and 0 underfull boxes -- overfull 0, underfull 0
+[PASS] main.log: every \ref and \cite resolved -- []
+[PASS] main.blg: no Biber warnings or errors
+[PASS] titlepage.log: 0 overfull and 0 underfull boxes -- overfull 0, underfull 0
+[PASS] titlepage.log: every \ref and \cite resolved -- []
+[PASS] titlepage.blg: no Biber warnings or errors
+[PASS] highlights.log: 0 overfull and 0 underfull boxes -- overfull 0, underfull 0
+[PASS] highlights.log: every \ref and \cite resolved -- []
+[PASS] highlights.blg: no Biber warnings or errors
+[PASS] exhibits.log: 0 overfull and 0 underfull boxes -- overfull 0, underfull 0
+[PASS] exhibits.log: every \ref and \cite resolved -- []
+[PASS] exhibits.blg: no Biber warnings or errors
+[PASS] No "??" (unresolved reference) in any PDF
+[PASS] Every cited key is in references.bib
+[PASS] Tables cited in order of first mention -- tab:desc tab:fosr tab:spm tab:profiles
+[PASS] Figures cited in order of first mention -- fig:fosr fig:spm fig:band fig:profiles
+[PASS] Fig1_mean_curves_fosr.pdf is greyscale -- max channel spread 0/255
+[PASS] Fig2_tertile_comparison.pdf is greyscale -- max channel spread 0/255
+[PASS] Fig3_matched_height.pdf is greyscale -- max channel spread 0/255
+[PASS] Fig4_profile_continuum.pdf is greyscale -- max channel spread 0/255
+[PASS] Captions do not mention colours
+[PASS] Table text >= 9 pt (only \small or \footnotesize in a 12 pt document: 10.95 / 10 pt)
+[PASS] Tables and figures are floats placed between paragraphs ([!htbp]; placeins keeps them in their section) -- not between paragraphs: []; tables not [!htbp]: []; figures not [!htbp]: 0
+[PASS] Tables use booktabs rules and notes below, with no vertical rules or \hline -- vertical/hline: []; missing booktabs/notes: []
+[PASS] Table CIs written as [a, b]
+[PASS] Every DOI printed as https://doi.org/<doi>, unbroken -- 40 DOIs; missing/broken: []
+[PASS] No spaced or truncated DOI strings
+[PASS] Reference list says "ggplot2" (not "Ggplot2")
+[PASS] Every DOI resolves at doi.org -- 40/40 resolve; failing: []
+[PASS] British spelling (no US forms in the authors' text)
+[PASS] Highlights: 3-5 bullets, each <= 85 characters -- 57, 81, 77, 82
+[PASS] No placeholders except the ethics statement
+[PASS] Ethics placeholder still present (to be filled by the authors) -- informational: fails once filled; then delete this check
+[PASS] No manuscript page more than 25% empty (section ends, front matter and last page excepted) -- exempt section-end pages: p.22 56%; largest gap elsewhere: 12%
+[PASS] Overleaf project files present (latexmkrc, README.txt, references.bib, figures, tables)
+[PASS] Front matter on page 1 in order: title, short title, Abstract, Keywords, Extended summary -- [0, 73, 118, 781, 947]
+[PASS] Introduction starts on the page after the front matter -- Introduction | Sports organisations now collect force-plate data as routinely as they collect attendance. A squad | can be put through a set of countermovement jumps (CMJs) in a few minutes, the software | returns jump height, peak force, impulses and phase durations within seconds, and those numbers
+[PASS] No mention of the conference abstract or an earlier analysis (decision M5)
+[PASS] No stock AI phrasing, em dashes or the "trial-specific" overclaim
+
+61/61 checks passed
