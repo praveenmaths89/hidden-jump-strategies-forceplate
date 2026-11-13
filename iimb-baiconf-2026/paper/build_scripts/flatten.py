@@ -23,6 +23,14 @@ def table(t):
     t = re.sub(r'^%.*\n', '', t, flags=re.M)
     note = re.search(r'\\begin\{tablenotes\}(\[[^\]]*\])?\\footnotesize\s*\\item\s*(.*?)\\end\{tablenotes\}', t, re.S)
     t = re.sub(r'\\begin\{tablenotes\}.*?\\end\{tablenotes\}', '', t, flags=re.S)
+    m = re.search(r'\\begin\{tabular\}\{', t)
+    if m:
+        _, j = braced(t, m.end() - 1)
+        inner = t[j:t.index('\\end{tabular}')]
+        nc = max(l.count('&') for l in inner.split('\\\\')) + 1
+        t = t[:m.start()] + '\\begin{tabular}{l' + 'r' * (nc - 1) + '}' + t[j:]
+    t = re.sub(r'\\multicolumn\{(\d+)\}\{@\{\}l\}', r'\\multicolumn{\1}{l}', t)
+    t = t.replace('\\addlinespace', '').replace('\\quad ', '').replace('\\enspace', ' ')
     t = re.sub(r'\\begin\{tabular\*\}\{\\linewidth\}\{@\{\\extracolsep\{\\fill\}\}([^@]*)@\{\}\}', lambda m: '\\begin{tabular}{' + m.group(1) + '}', t)
     t = t.replace('\\end{tabular*}', '\\end{tabular}')
     t = re.sub(r'\\begin\{tabularx\}\{\\linewidth\}\{@\{\}>\{\\raggedright\\arraybackslash\}Xll@\{\}\}', r'\\begin{tabular}{lll}', t).replace('\\end{tabularx}', '\\end{tabular}')

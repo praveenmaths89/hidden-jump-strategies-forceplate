@@ -134,10 +134,15 @@ check('Table text >= 9 pt (only \\small or \\footnotesize in a 12 pt document: 1
 b = rd('body.tex')
 bad = [m.group(1) for m in re.finditer(r'(?<!\n\n)\\input\{tables/([^}]+)\}', b)] + \
       [m.group(1) for m in re.finditer(r'\\input\{tables/([^}]+)\}(?!\n\n)', b)]
-nonH = [t for t in glob.glob('tables/*.tex') if not re.search(r'\\begin\{table\}\[H\]', rd(t))]
-nonHf = len(re.findall(r'\\begin\{figure\}(?!\[H\])', b))
-check('Tables and figures sit between paragraphs as [H] floats (no exhibit splits a sentence)', not bad and not nonH and nonHf == 0,
-      f'not between paragraphs: {bad}; tables not [H]: {nonH}; figures not [H]: {nonHf}')
+nonH = [t for t in glob.glob('tables/*.tex') if not re.search(r'\\begin\{table\}\[!?htb?p\]', rd(t))]
+nonHf = len(re.findall(r'\\begin\{figure\}(?!\[!?htb?p\])', b))
+check('Tables and figures are floats placed between paragraphs ([!htbp]; placeins keeps them in their section)', not bad and not nonH and nonHf == 0 and 'placeins' in rd('preamble.tex'),
+      f'not between paragraphs: {bad}; tables not [!htbp]: {nonH}; figures not [!htbp]: {nonHf}')
+vr = [os.path.basename(t) for t in glob.glob('tables/*.tex') if re.search(r'\\begin\{tabular\*?\}(\{[^}]*\})?\{[^}]*\|', rd(t)) or '\\hline' in rd(t)]
+nobt = [os.path.basename(t) for t in glob.glob('tables/*.tex') if not all(k in rd(t) for k in ['\\toprule', '\\midrule', '\\bottomrule', 'tablenotes'])]
+check('Tables use booktabs rules and notes below, with no vertical rules or \\hline', not vr and not nobt, f'vertical/hline: {vr}; missing booktabs/notes: {nobt}')
+ci_old = [os.path.basename(t) for t in glob.glob('tables/*.tex') if re.search(r'\(\d[\d.]*--\d[\d.]*\)', rd(t))]
+check('Table CIs written as [a, b]', not ci_old, ', '.join(ci_old))
 
 # 6. References: APA DOI form and resolution
 dois = re.findall(r'doi\s*=\s*\{([^}]*)\}', rd('references.bib'))
@@ -185,6 +190,41 @@ check('No placeholders except the ethics statement', not ph, '; '.join(ph[:5]))
 eth = 'Ethics committee name, approval number and date to be inserted'
 check('Ethics placeholder still present (to be filled by the authors)', eth in re.sub(r'\s+', ' ', strip_lineno(pdftext('main.pdf'))) and eth.split(',')[0] in pdftext('titlepage.pdf'),
       'informational: fails once filled; then delete this check')
+
+# 11. Page fill: no page of the manuscript is more than 25% empty, except a page that ends a
+#     section (the next page opens with a section heading), the front-matter page and the last page.
+def page_gaps(pdf, dpi=40):
+    import tempfile
+    tmp = tempfile.mkdtemp()
+    subprocess.run(['pdftoppm', '-r', str(dpi), '-gray', '-png', pdf, tmp + '/p'], check=True)
+    out = []
+    for fpath in sorted(glob.glob(tmp + '/p-*.png')):
+        im = Image.open(fpath).convert('L'); w, h = im.size
+        top, bot = int(h * 0.09), int(h * 0.90)          # text block inside 1-in margins, above the page number
+        box = im.crop((int(w * 0.10), top, int(w * 0.90), bot))
+        dark = [y for y in range(box.size[1]) if box.crop((0, y, box.size[0], y + 1)).getextrema()[0] < 160]
+        out.append(1.0 if not dark else (box.size[1] - 1 - dark[-1]) / box.size[1])
+    return out
+HEAD = r'^\s*(\d+\s+)?(\d\s+)?(Introduction|Literature review|Data and methodology|Results|Discussion|Managerial and practical implications|Conclusion|Declarations|References)\b'
+gaps = page_gaps('main.pdf'); npg = len(gaps); bad = []
+for i, gp in enumerate(gaps, 1):
+    if gp <= 0.25 or i in (1, npg): continue
+    nxt = subprocess.run(['pdftotext', '-f', str(i + 1), '-l', str(i + 1), 'main.pdf', '-'], capture_output=True, text=True).stdout
+    first = [l for l in nxt.split('\n') if l.strip()][:3]
+    if any(re.match(HEAD, l) for l in first): continue
+    bad.append(f'p.{i} {gp:.0%} empty')
+check('No manuscript page more than 25% empty (section ends, front matter and last page excepted)', not bad,
+      '; '.join(bad) if bad else 'exempt section-end pages: ' + ', '.join(f'p.{i} {g:.0%}' for i, g in enumerate(gaps, 1) if g > 0.25) + f'; largest gap elsewhere: {max([g for i, g in enumerate(gaps, 1) if g <= 0.25] or [0]):.0%}')
+
+check('Overleaf project files present (latexmkrc, README.txt, references.bib, figures, tables)', all(os.path.exists(x) for x in ['latexmkrc', 'README.txt', 'references.bib']) and len(glob.glob('figures/*.pdf')) == 5 and len(glob.glob('tables/*.tex')) == 7)
+
+# 12. Front matter: labelled, in the IIMB order, on one block before the Introduction (which starts a new page)
+p1 = strip_lineno(pdftext('main.pdf').split('\f')[0])
+order = [p1.find(k) for k in ['Revealing hidden jump strategies', 'Short title', 'Abstract', 'Keywords', 'Extended summary']]
+check('Front matter on page 1 in order: title, short title, Abstract, Keywords, Extended summary', all(o >= 0 for o in order) and order == sorted(order), str(order))
+p2 = strip_lineno(pdftext('main.pdf').split('\f')[1])
+first2 = [l.strip() for l in p2.split('\n') if l.strip()][:4]
+check('Introduction starts on the page after the front matter', any(re.fullmatch(r'(1\s+)?Introduction', l) for l in first2), ' | '.join(first2))
 
 # 10. Recurring drafting mistakes (each happened at least twice while preparing this paper)
 src = {f: rd(f) for f in ['abstract.tex', 'summary.tex', 'body.tex', 'captions.tex', 'highlights.tex', 'titlepage.tex', 'main.tex', 'README.txt'] + glob.glob('tables/*.tex')}

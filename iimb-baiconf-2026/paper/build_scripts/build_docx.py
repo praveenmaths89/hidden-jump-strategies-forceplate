@@ -14,7 +14,7 @@ d = Document('ms_raw.docx')
 for p in d.paragraphs:
     t = p.text.strip()
     if t == TITLE: p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    if t.startswith('Extended summary') or (p.style.name.startswith('Heading') and t in ('Introduction', 'References')): brk(p)
+    if p.style.name.startswith('Heading') and t in ('Introduction', 'References'): brk(p)
 style_doc(d); add_page_numbers(d)
 d.core_properties.author = ''; d.core_properties.last_modified_by = ''; d.core_properties.title = TITLE
 d.save(f'{OUT}/IIMB_BAICONF2026_Manuscript_anonymised.docx')

@@ -4,17 +4,21 @@
 \input{preamble}
 \usepackage{lineno}
 \begin{document}
-\doublespacing
+% Front matter (IIMB guidelines): title, short title, abstract, keywords and extended summary
+% together on the first page, 1.5-spaced so the block stays together; the body is double-spaced.
+\begin{onehalfspacing}
 \begin{center}
 {\Large\bfseries \papertitle\par}
 \medskip
 {\normalsize Short title: \shorttitle\par}
 \end{center}
-\bigskip
+\medskip
 \input{abstract}
-\clearpage
+\medskip
 \input{summary}
+\end{onehalfspacing}
 \clearpage
+\doublespacing
 \linenumbers
 \input{body}
 \nolinenumbers

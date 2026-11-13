@@ -10,7 +10,15 @@
 \usepackage{graphicx}
 \usepackage{booktabs,tabularx,array,makecell,threeparttable}
 \usepackage{pdflscape}
-\usepackage{float}                         % [H]: floats never split a sentence
+\usepackage{siunitx}                       % S columns: numbers aligned on the decimal point
+\sisetup{group-digits=none, table-number-alignment=center, input-symbols={[]}}
+\usepackage[section]{placeins}             % floats stay within their section (\FloatBarrier at each \section)
+\renewcommand{\topfraction}{0.85}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.12}
+\renewcommand{\floatpagefraction}{0.75}
+\setcounter{topnumber}{3}\setcounter{totalnumber}{4}
+\raggedbottom
 \usepackage{xurl}                          % DOIs break cleanly at line ends
 \usepackage[labelsep=period,font=small,labelfont=bf,justification=raggedright,singlelinecheck=false]{caption}
 \captionsetup[figure]{name=Fig.}

@@ -82,7 +82,7 @@ The main analysis included \nTrials{} trials from \nAth{} athletes in \nSess{} s
 
 The mean curve (Fig.~\ref{fig:mean}A) showed the familiar take-off sequence of unweighting, braking and propulsion, followed by a landing with one large force peak whose height varied widely between trials. Landing was far more variable than take-off. The landing block held \varShareLanding\% of the summed point-wise variance. PC1 explained \varPCA\% of the variance, and PC1 to PC4 together explained \cumFour\% (Fig.~\ref{fig:mean}B). Ten components were needed to reach \cumTen\%.
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig1_mean_curve_scree}
 \caption{\capMean}
@@ -93,7 +93,7 @@ Between \ldsPCD\% and \ldsPCB\% of each retained component's squared loadings fe
 
 \input{tables/tab3_components}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig2_pc_reconstructions_main}
 \caption{\capPCs}
@@ -102,11 +102,11 @@ Between \ldsPCD\% and \ldsPCB\% of each retained component's squared loadings fe
 
 \subsection{Matching, explained variance and sensitivity}
 
-Once the components had been described, we asked how far conventional metrics pin them down. The jump-height band held \jhBandN{} trials from \jhBandAth{} athletes. Their jump height was \jhBandMean{} $\pm$ \jhBandSD{}\,cm, an SD about \jhBandSDfactor{} times smaller than in the full sample. Take-off curves in the band looked alike, but landing curves did not (Fig.~\ref{fig:band}A). For PC1, matching reduced the SD by a small amount (ratio \jhRatioPCA; 95\% CI \jhLoPCA--\jhHiPCA). Ratios for PC2 to PC4 lay between \jhRatioOtherRange, and all four CIs contained 1 (Table~\ref{tab:band}; Fig.~\ref{fig:band}B). The whole-curve ratio was \wholeJh. Matching on relative concentric peak force produced no detectable narrowing either: component ratios were \rpfRatioRange, and the whole-curve ratio was \wholeRpf. Changing the band width moved the PC1 ratio only within \bwPCARange. Across all components and widths the ratios lay between \bwAllRange.
+Once the components had been described, we asked how far conventional metrics pin them down. The jump-height band held \jhBandN{} trials from \jhBandAth{} athletes. Their jump height was \jhBandMean{} $\pm$ \jhBandSD{}\,cm, an SD about \jhBandSDfactor{} times smaller than in the full sample. Take-off curves in the band looked alike, but landing curves did not (Fig.~\ref{fig:band}A). For PC1, matching reduced the SD by a small amount (ratio \jhRatioPCA; 95\% CI [\jhLoPCA, \jhHiPCA]). Ratios for PC2 to PC4 lay between \jhRatioOtherRange, and all four CIs contained 1 (Table~\ref{tab:band}; Fig.~\ref{fig:band}B). The whole-curve ratio was \wholeJh. Matching on relative concentric peak force produced no detectable narrowing either: component ratios were \rpfRatioRange, and the whole-curve ratio was \wholeRpf. Changing the band width moved the PC1 ratio only within \bwPCARange. Across all components and widths the ratios lay between \bwAllRange.
 
 \input{tables/tab4_bands}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig3_matched_band}
 \caption{\capBand}
@@ -117,22 +117,22 @@ The six predictors explained \rtwoRange\% of the variance of the four components
 
 \input{tables/tab5_r2}
 
-Differences between athletes accounted for \betweenRange\% of score variance (Table~\ref{tab:vd}). The upper limits of the bootstrap CIs lay in the range \baCIUpperRange\%. Differences between sessions of the same athlete accounted for \sessRange\%, and differences between trials within a session for \withinRange\%. PC1 was the most athlete-specific component, with \betweenPCA\% of its variance between athletes (95\% CI \baLoPCA--\baHiPCA) and \sessPCA\% between sessions. For PC2, PC3 and PC4, the within-session share was \withinPCB\%, \withinPCC\% and \withinPCD\%. Adding age as a covariate changed the between-athlete shares by at most \baAgeMaxChange{} percentage points (adjusted range \baAgeAdjRange\%). Age at test therefore does not account for the low athlete shares.
+Differences between athletes accounted for \betweenRange\% of score variance (Table~\ref{tab:vd}). The upper limits of the bootstrap CIs lay in the range \baCIUpperRange\%. Differences between sessions of the same athlete accounted for \sessRange\%, and differences between trials within a session for \withinRange\%. PC1 was the most athlete-specific component, with \betweenPCA\% of its variance between athletes (95\% CI [\baLoPCA, \baHiPCA]) and \sessPCA\% between sessions. For PC2, PC3 and PC4, the within-session share was \withinPCB\%, \withinPCC\% and \withinPCD\%. Adding age as a covariate changed the between-athlete shares by at most \baAgeMaxChange{} percentage points (adjusted range \baAgeAdjRange\%). Age at test therefore does not account for the low athlete shares.
 
 \input{tables/tab6_variance}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig4_variance_explained}
 \caption{\capRtwo}
 \label{fig:r2}
 \end{figure}
 
-The 1-s landing window changed the picture in one respect. With this window, impact occupied only the opening few per cent of the landing block, and the remainder was close to quiet standing (Fig.~\ref{fig:window}). The four components explained \cumFourS\% of the variance. PC3 moved to the take-off block, which held \ldsSPCCtakeoff\% of its squared loading. It correlated strongly with contraction time ($r$~=~\rCtSPCC) and with relative concentric peak force ($r$~=~\rRpfSPCC). The six predictors explained most of this component ($R^2$ = \rtwoSPCC\%; \cvSPCC\% under cross-validation). The three landing components stayed poorly explained ($R^2$ = \rtwoLandingSRange\%; Table~\ref{tab:window}; Fig.~\ref{fig:r2}). PC1 was again a landing component, linked to peak landing force ($r$~=~\rLpfSPCA) and landing duration ($r$~=~\rLdSPCA). Jump-height matching narrowed PC1 a little more than in the main analysis (ratio \jhRatioSPCA; 95\% CI \jhLoSPCA--\jhHiSPCA), while the whole-curve ratio stayed at \wholeJhS. Matching on relative concentric peak force narrowed the take-off component PC3 (ratio \rpfRatioSPCC; 95\% CI \rpfLoSPCC--\rpfHiSPCC). The matched-band comparison can therefore detect a constraint when a metric does fix part of the curve.
+The 1-s landing window changed the picture in one respect. With this window, impact occupied only the opening few per cent of the landing block, and the remainder was close to quiet standing (Fig.~\ref{fig:window}). The four components explained \cumFourS\% of the variance. PC3 moved to the take-off block, which held \ldsSPCCtakeoff\% of its squared loading. It correlated strongly with contraction time ($r$~=~\rCtSPCC) and with relative concentric peak force ($r$~=~\rRpfSPCC). The six predictors explained most of this component ($R^2$ = \rtwoSPCC\%; \cvSPCC\% under cross-validation). The three landing components stayed poorly explained ($R^2$ = \rtwoLandingSRange\%; Table~\ref{tab:window}; Fig.~\ref{fig:r2}). PC1 was again a landing component, linked to peak landing force ($r$~=~\rLpfSPCA) and landing duration ($r$~=~\rLdSPCA). Jump-height matching narrowed PC1 a little more than in the main analysis (ratio \jhRatioSPCA; 95\% CI [\jhLoSPCA, \jhHiSPCA]), while the whole-curve ratio stayed at \wholeJhS. Matching on relative concentric peak force narrowed the take-off component PC3 (ratio \rpfRatioSPCC; 95\% CI [\rpfLoSPCC, \rpfHiSPCC]). The matched-band comparison can therefore detect a constraint when a metric does fix part of the curve.
 
 \input{tables/tab7_windows}
 
-\begin{figure}[H]
+\begin{figure}[!htbp]
 \centering
 \includegraphics[width=\linewidth]{Fig5_pc_reconstructions_1s}
 \caption{\capWindow}

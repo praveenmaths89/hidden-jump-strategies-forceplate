@@ -31,7 +31,7 @@ All paths are relative to this folder. The console output is saved to `output/ru
 Notes:
 - **Bug fixed in this package:** the original LaTeX Table 1 printed `5%` unescaped, so LaTeX dropped the rest of row R2. `R/03_analysis.R` now escapes it; no numbers change.
 - **Additions for the IIMB version (13 Nov 2026):** section 13b of `R/03_analysis.R` adds bootstrap CIs and an age-adjusted fit for the variance decomposition (Table 6), block variance shares, landing-descriptor R², Spearman-Brown reliability, the PC3 check under relative-peak-force matching (Table 7) and counts used in the text. Figures are greyscale and named `Fig1_`-`Fig5_` as in the manuscript.
-- `overleaf/` is the Overleaf-ready LaTeX source (pdfLaTeX + Biber) of the manuscript, title page, highlights and exhibits. `./check_format.sh --build` compiles it and checks it against the IIMB guidelines (54 checks).
+- `overleaf/` is the Overleaf-ready LaTeX source (pdfLaTeX + Biber) of the manuscript, title page, highlights and exhibits. `./check_format.sh --build` compiles it and checks it against the IIMB guidelines (60 checks).
 
 ## Manuscript exhibits and the files that produce them
 | Manuscript | File written by `R/03_analysis.R` |
